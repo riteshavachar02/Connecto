@@ -11,26 +11,36 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha // Added for fade-in animation
+import androidx.compose.ui.draw.rotate // Added for rotation animation
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.example.connecto.R
-import com.example.connecto.R.drawable.ic_logo
 import com.example.connecto.presentation.util.Screen
 import com.example.connecto.utils.Constants
 import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen (
+fun SplashScreen(
     navController: NavController
 ) {
-    val scale =  remember {
+
+    val scale = remember {
+        Animatable(0f)
+    }
+
+    val alpha = remember {
+        Animatable(0f)
+    }
+
+    val rotation = remember {
         Animatable(0f)
     }
     val overshootInterpolator = remember {
         OvershootInterpolator(2f)
     }
-    LaunchedEffect (key1 = true) {
+    LaunchedEffect(key1 = true) {
         scale.animateTo(
             targetValue = 0.5f,
             animationSpec = tween(
@@ -40,18 +50,40 @@ fun SplashScreen (
                 }
             )
         )
+        alpha.animateTo(
+            targetValue = 1f,
+            animationSpec = tween(
+                durationMillis = 600,
+                easing = {
+                    overshootInterpolator.getInterpolation(it)
+                }
+            )
+        )
+        rotation.animateTo(
+            targetValue = 360f,
+            animationSpec = tween(
+                durationMillis = 800,
+                easing = {
+                    overshootInterpolator.getInterpolation(it)
+                }
+            )
+        )
         delay(Constants.SPLASH_SCREEN_DURATION)
         navController.popBackStack()
         navController.navigate(Screen.LoginScreen.route)
     }
-    Box (
+    Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_logo),
             contentDescription = "Logo",
-            modifier = Modifier.scale(scale.value)
+            // Added alpha and rotate modifiers to apply fade-in and rotation animations
+            modifier = Modifier
+                .scale(scale.value)
+                .alpha(alpha.value)
+                .rotate(rotation.value)
         )
     }
 }

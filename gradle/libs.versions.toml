@@ -40,6 +40,7 @@ uiTestJunit4 = "1.5.4"
 uiTestManifest = "1.5.4"
 uiTooling = "1.5.4"
 uiToolingPreview = "1.5.4"
+uiTestJunit4Android = "1.7.8"
 
 [libraries]
 androidx-activity-compose-v182 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
@@ -90,6 +91,7 @@ ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = 
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "uiTestManifest" }
 ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiTooling" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
+androidx-ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4Android" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

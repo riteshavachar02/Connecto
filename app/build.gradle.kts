@@ -63,6 +63,7 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.ui.tooling.preview)
     implementation(libs.material3)
+    implementation(libs.androidx.ui.test.junit4.android)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
