@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.androidx.ui.test.junit4.android)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
+    implementation (libs.androidx.material.icons.extended)
 
     // Navigation for Compose
     implementation(libs.androidx.navigation.compose)
@@ -100,7 +101,7 @@ dependencies {
     testImplementation(libs.robolectric)
 
     androidTestImplementation(libs.androidx.junit.v115)
-    androidTestImplementation(libs.androidx.espresso.core.v351)
+    androidTestImplementation(libs.androidx.espresso.core.v350)
     androidTestImplementation(libs.ui.test.junit4)
     androidTestImplementation(libs.hilt.android.testing)
     kaptAndroidTest(libs.hilt.android.compiler.v248)
