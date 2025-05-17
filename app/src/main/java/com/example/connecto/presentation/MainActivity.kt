@@ -1,4 +1,4 @@
-package com.example.connecto
+package com.example.connecto.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

@@ -1,4 +1,4 @@
-package com.example.connecto.presentation.login
+package com.example.connecto.presentation.register
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -16,22 +17,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.connecto.R
 import com.example.connecto.presentation.components.StandardTextField
 import com.example.connecto.presentation.ui.theme.spaceLarge
 import com.example.connecto.presentation.ui.theme.spaceMedium
+import com.example.connecto.presentation.ui.theme.spaceSmall
 import com.example.connecto.presentation.util.Screen
 
 @Composable
-fun LoginScreen (
+fun RegisterScreen (
     navController: NavController,
-    viewModel: LoginViewModel = hiltViewModel()
+    viewModel: RegisterViewModel = hiltViewModel()
 ) {
     Box (
         modifier = Modifier
@@ -50,24 +55,29 @@ fun LoginScreen (
                 .align(Alignment.Center),
         ) {
             Text(
-                text = stringResource(R.string.login),
+                text = stringResource(R.string.register),
                 color = MaterialTheme.colorScheme.onBackground,
                 style = MaterialTheme.typography.headlineLarge
             )
-
             Spacer(modifier = Modifier.height(spaceMedium))
-
+            StandardTextField (
+                text = viewModel.emailText.value,
+                onValueChange = {
+                    viewModel.setEmailText(it)
+                },
+                error = viewModel.emailError.value,
+                hint = stringResource(R.string.email_hint)
+            )
+            Spacer(modifier = Modifier.height(spaceMedium))
             StandardTextField (
                 text = viewModel.usernameText.value,
                 onValueChange = {
                     viewModel.setUsernameText(it)
                 },
                 error = viewModel.usernameError.value,
-                hint = stringResource(R.string.login_hint)
+                hint = stringResource(R.string.username_hint)
             )
-
             Spacer(modifier = Modifier.height(spaceMedium))
-
             StandardTextField (
                 text = viewModel.passwordText.value,
                 onValueChange = {
@@ -81,27 +91,23 @@ fun LoginScreen (
                     viewModel.setShowPassword(it)
                 }
             )
-
             Spacer(modifier = Modifier.height(spaceMedium))
-
             Button(
-                onClick = {
-                    navController.navigate(Screen.MainFeedScreen.route)
-                },
+                onClick = { },
                 modifier = Modifier
                     .align(Alignment.End)
             ) {
                 Text(
-                    text = stringResource(id = R.string.login),
+                    text = stringResource(id = R.string.register),
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             }
         }
         Text(
             text = buildAnnotatedString {
-                append(stringResource(R.string.dont_have_an_account_yet))
+                append(stringResource(R.string.already_have_an_account_yet))
                 append(" ")
-                val signupText = stringResource(R.string.sign_up)
+                val signupText = stringResource(R.string.sign_in)
                 withStyle(
                     style = SpanStyle(
                         color = MaterialTheme.colorScheme.primary
@@ -110,13 +116,13 @@ fun LoginScreen (
                     append(signupText)
                 }
             },
+
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
+                .fillMaxWidth()
                 .align(Alignment.BottomCenter)
                 .clickable {
-                    navController.navigate(
-                        Screen.RegisterScreen.route
-                    )
+                    navController.popBackStack()
                 }
         )
     }
