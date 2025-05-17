@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -60,6 +61,7 @@ fun LoginScreen (
                 onValueChange = {
                     viewModel.setUsernameText(it)
                 },
+                error = viewModel.usernameError.value,
                 hint = stringResource(R.string.login_hint)
             )
 
@@ -70,9 +72,27 @@ fun LoginScreen (
                 onValueChange = {
                     viewModel.setPasswordText(it)
                 },
+                error = viewModel.passwordError.value,
                 hint = stringResource(R.string.password_hint),
-                keyboardType = KeyboardType.Password
+                keyboardType = KeyboardType.Password,
+                showPasswordToggle = viewModel.showPassword.value,
+                onPasswordToggleClick = {
+                    viewModel.setShowPassword(it)
+                }
             )
+
+            Spacer(modifier = Modifier.height(spaceMedium))
+
+            Button(
+                onClick = { },
+                modifier = Modifier
+                    .align(Alignment.End)
+            ) {
+                Text(
+                    text = stringResource(id = R.string.login),
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
         }
         Text(
             text = buildAnnotatedString {

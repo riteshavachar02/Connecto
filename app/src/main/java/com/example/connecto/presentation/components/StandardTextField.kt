@@ -1,6 +1,7 @@
 package com.example.connecto.presentation.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -25,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import com.example.connecto.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -32,65 +34,78 @@ import com.example.connecto.R
 fun StandardTextField(
     text: String = "",
     hint: String = "",
-    isError: Boolean = false,
+    error: String = "",
+    showPasswordToggle: Boolean = false,
+    onPasswordToggleClick: (Boolean) -> Unit = {},
     keyboardType: KeyboardType = KeyboardType.Text,
     onValueChange: (String) -> Unit
 ) {
-    var isPasswordToggleDisplayed by remember {
+    val isPasswordToggleDisplayed by remember {
         mutableStateOf(keyboardType == KeyboardType.Password)
     }
 
-    var isPasswordVisible by remember {
-        mutableStateOf(false)
-    }
-
-    TextField(
-        value = text,
-        onValueChange = onValueChange,
-        colors = TextFieldDefaults.textFieldColors(
-            focusedTextColor = MaterialTheme.colorScheme.onBackground,
-            unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
-            disabledTextColor = MaterialTheme.colorScheme.onBackground,
-            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-            cursorColor = MaterialTheme.colorScheme.primary
-        ),
-        placeholder = {
-            Text(
-                text = hint,
-                style = MaterialTheme.typography.bodyLarge
-            )
-        },
-        isError = isError,
-        keyboardOptions = KeyboardOptions(
-            keyboardType = keyboardType
-        ),
-        visualTransformation = if (!isPasswordVisible && isPasswordToggleDisplayed) {
-            PasswordVisualTransformation()
-        } else {
-            VisualTransformation.None
-        },
-        singleLine = true,
-        trailingIcon = {
-            if (isPasswordToggleDisplayed) {
-                IconButton(onClick = {
-                    isPasswordVisible = !isPasswordVisible
-                }) {
-                    Icon(
-                        imageVector = if (isPasswordVisible) {
-                            Icons.Filled.VisibilityOff
-                        } else {
-                            Icons.Filled.Visibility
-                        },
-                        contentDescription = if (isPasswordVisible) {
-                            stringResource(R.string.password_visible_content_description)
-                        } else {
-                            stringResource(R.string.password_hide_content_description)
-                        }
-                    )
-                }
-            }
-        },
+    Column(
         modifier = Modifier
             .fillMaxWidth()
+    ) {
+        TextField(
+            value = text,
+            onValueChange = onValueChange,
+            colors = TextFieldDefaults.textFieldColors(
+                focusedTextColor = MaterialTheme.colorScheme.onBackground,
+                unfocusedTextColor = MaterialTheme.colorScheme.onBackground,
+                disabledTextColor = MaterialTheme.colorScheme.onBackground,
+                focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+                cursorColor = MaterialTheme.colorScheme.primary,
+            ),
+            placeholder = {
+                Text(
+                    text = hint,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+            },
+            isError = error != "",
+            keyboardOptions = KeyboardOptions(
+                keyboardType = keyboardType
+            ),
+            visualTransformation = if (!showPasswordToggle && isPasswordToggleDisplayed) {
+                PasswordVisualTransformation()
+            } else {
+                VisualTransformation.None
+            },
+            singleLine = true,
+            trailingIcon = {
+                if (isPasswordToggleDisplayed) {
+                    IconButton(onClick = {
+                        onPasswordToggleClick(!showPasswordToggle)
+                    }) {
+                        Icon(
+                            imageVector = if (showPasswordToggle) {
+                                Icons.Filled.VisibilityOff
+                            } else {
+                                Icons.Filled.Visibility
+                            },
+                            contentDescription = if (showPasswordToggle) {
+                                stringResource(R.string.password_visible_content_description)
+                            } else {
+                                stringResource(R.string.password_hide_content_description)
+                            }
+                        )
+                    }
+                }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
         )
+        if (error.isNotEmpty()){
+            Text(
+                text = error,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.error,
+                textAlign = TextAlign.End,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+        }
+    }
 }
