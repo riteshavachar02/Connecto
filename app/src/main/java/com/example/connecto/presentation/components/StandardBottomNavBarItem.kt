@@ -23,19 +23,17 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.connecto.presentation.ui.theme.spaceMedium
 import com.example.connecto.presentation.ui.theme.spaceSmall
 
 @Composable
 fun RowScope.StandardBottomNavItem(
     modifier: Modifier = Modifier,
-    icon: ImageVector?,
+    icon: ImageVector? = null ,
     contentDescription: String? = null,
     selected: Boolean = false,
     alertCount: Int? = null,
@@ -44,7 +42,6 @@ fun RowScope.StandardBottomNavItem(
     enabled: Boolean = true,
     onClick: () -> Unit
 ) {
-
     if(alertCount != null && alertCount < 0) {
         throw IllegalArgumentException("Alert count can't be negative")
     }
@@ -53,7 +50,6 @@ fun RowScope.StandardBottomNavItem(
         animationSpec = tween(durationMillis = 300),
         label = "LineLengthAnimation"
     )
-
     NavigationBarItem(
         selected = selected,
         onClick = onClick,
@@ -65,16 +61,16 @@ fun RowScope.StandardBottomNavItem(
             unselectedIconColor = Color.Transparent,
             unselectedTextColor = Color.Transparent,
             disabledIconColor = Color.Transparent,
-            disabledTextColor = Color.Transparent
+            disabledTextColor = Color.Transparent,
         ),
         icon = {
             Box(
                 modifier = Modifier
-                    .size(width = 40.dp, height = 50.dp)
+                    .size(40.dp)
                     .padding(
                         start = spaceSmall,
                         end = spaceSmall,
-                        bottom = spaceMedium
+                        bottom = spaceSmall
                     )
                     .drawBehind {
                         if(lineLength.value > 0f) {
@@ -95,35 +91,35 @@ fun RowScope.StandardBottomNavItem(
                         }
                     }
             ) {
-                if(icon != null) {
+                if (icon!= null) {
                     Icon(
                         imageVector = icon,
                         contentDescription = contentDescription,
                         modifier = Modifier
-                            .size(22.dp)
+                            .size(40.dp)
                             .align(Alignment.Center),
                         tint = if (selected) selectedColor
                         else unselectedColor
                     )
                 }
-                if(alertCount != null) {
+                if (alertCount!= null) {
                     val alertText = if (alertCount > 99) {
                         "99+"
-                    } else {
+                    } else{
                         alertCount.toString()
                     }
                     Text(
                         text = alertText,
                         color = MaterialTheme.colorScheme.onPrimary,
                         fontWeight = FontWeight.Bold,
+                        fontSize = 9.sp,
                         textAlign = TextAlign.Center,
-                        fontSize = 10.sp,
                         modifier = Modifier
                             .align(Alignment.TopCenter)
-                            .offset(10.dp)
-                            .size(15.dp)
+                            .offset(20.dp)
+                            .size(22.dp)
                             .clip(CircleShape)
-                            .background(MaterialTheme.colorScheme.primary)
+                            .background(color = MaterialTheme.colorScheme.primary)
                     )
                 }
             }
