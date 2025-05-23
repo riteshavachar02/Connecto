@@ -1,32 +1,22 @@
 package com.example.connecto.presentation.components
 
-import DarkGray
-import MediumGray
-import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.outlined.Chat
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Message
 import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.PersonOutline
-import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
-import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -52,6 +42,11 @@ fun StandardScaffold(
             alertCount = 10
         ),
         BottomNavItem(
+            route = Screen.CreatePostScreen.route,
+            icon = Icons.Default.Add,
+            contentDescription = stringResource(id = R.string.make_post)
+        ),
+        BottomNavItem(
             route = Screen.ActivityScreen.route,
             icon = Icons.Outlined.Notifications,
             contentDescription = stringResource(id = R.string.alert),
@@ -67,32 +62,40 @@ fun StandardScaffold(
 ) {
 
     Scaffold(
-        modifier = modifier,
         bottomBar = {
             if (showBottomBar) {
-                NavigationBar(
-                    modifier = Modifier.fillMaxWidth(),
-                    containerColor = MaterialTheme.colorScheme.background,
-                    contentColor = MaterialTheme.colorScheme.onBackground,
-                    tonalElevation = 40.dp
-                ) {
-                    bottomNavItem.forEachIndexed { _, bottomNavItem ->
-                        StandardBottomNavItem(
-                            icon = bottomNavItem.icon,
-                            contentDescription = bottomNavItem.contentDescription,
-                            selected = bottomNavItem.route == navController.currentDestination?.route,
-                            alertCount = bottomNavItem.alertCount,
-                            enabled = bottomNavItem.icon != null
-                        ) {
-                            if(navController.currentDestination?.route != bottomNavItem.route) {
-                                navController.navigate(bottomNavItem.route)
+                Column {
+                    Divider(
+                        modifier = Modifier.fillMaxWidth(),
+                        thickness = 1.dp,
+                        color = MaterialTheme.colorScheme.outline.copy(alpha = 0.3f),
+                    )
+                    NavigationBar(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .size(65.dp),
+                        containerColor = MaterialTheme.colorScheme.background,
+                        contentColor = MaterialTheme.colorScheme.onBackground,
+                        tonalElevation = 5.dp
+                    ) {
+                        bottomNavItem.forEachIndexed { _, bottomNavItem ->
+                            StandardBottomNavItem(
+                                icon = bottomNavItem.icon,
+                                contentDescription = bottomNavItem.contentDescription,
+                                selected = bottomNavItem.route == navController.currentDestination?.route,
+                                alertCount = bottomNavItem.alertCount,
+                                enabled = bottomNavItem.icon != null
+                            ) {
+                                if(navController.currentDestination?.route != bottomNavItem.route) {
+                                    navController.navigate(bottomNavItem.route)
+                                }
                             }
                         }
                     }
                 }
             }
-
-        }
+        },
+        modifier = modifier,
     ) { paddingValues->
         content(paddingValues)
     }

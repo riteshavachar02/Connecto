@@ -18,10 +18,9 @@ import com.example.connecto.presentation.splash.SplashScreen
 fun Navigation (
     navController: NavHostController
 ) {
-//    val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = Screen.SplashScreen.route
+        startDestination = Screen.MainFeedScreen.route
     ) {
         composable(Screen.SplashScreen.route) {
             SplashScreen(navController = navController)

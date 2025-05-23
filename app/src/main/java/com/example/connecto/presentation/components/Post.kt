@@ -1,5 +1,6 @@
 package com.example.connecto.presentation.components
 
+import DarkGray
 import HintGray
 import MediumGray
 import TextWhite
@@ -48,6 +49,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.connecto.R
 import com.example.connecto.domain.models.Post
+import com.example.connecto.presentation.ui.theme.spaceExtraSmall
+import com.example.connecto.presentation.ui.theme.spaceLarge
 import com.example.connecto.presentation.ui.theme.spaceMedium
 import com.example.connecto.presentation.ui.theme.spaceSmall
 import com.example.connecto.utils.Constants
@@ -61,15 +64,19 @@ fun Post(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(spaceMedium)
+            .padding(
+                start = spaceSmall,
+                end = spaceSmall,
+                top = spaceExtraSmall
+            )
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .offset(y = profilePictureSize / 2f)
-                .clip(MaterialTheme.shapes.medium)
                 .shadow(5.dp)
-                .background(MediumGray)
+                .clip(MaterialTheme.shapes.medium)
+                .background(DarkGray)
         ) {
             Image(
                 painterResource(id = R.drawable.kermit),
@@ -141,20 +148,11 @@ fun Post(
                 }
             }
         }
-        Image(
-            painterResource(id = R.drawable.ronaldo_profile),
-            contentDescription = "Profile picture",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(profilePictureSize)
-                .clip(CircleShape)
-                .align(Alignment.TopCenter)
-        )
     }
 }
 
 @Composable
-fun Engagementbuttons(
+fun EngagementButtons(
     modifier: Modifier = Modifier,
     iconSize: Dp = 30.dp,
     isLiked: Boolean = false,
@@ -225,10 +223,18 @@ fun ActionBar(
     onUserNameClick: (String) -> Unit = {}
 ) {
     Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
     ){
+        Image(
+            painterResource(id = R.drawable.ronaldo_profile),
+            contentDescription = "Profile picture",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(30.dp)
+                .clip(CircleShape)
+        )
+        Spacer(modifier = Modifier.width(spaceSmall))
         Text(
             text = userName,
             style = TextStyle(
@@ -240,7 +246,8 @@ fun ActionBar(
                     onUserNameClick(userName)
                 }
         )
-        Engagementbuttons(
+        Spacer(modifier = Modifier.width(50.dp))
+        EngagementButtons(
             isLiked = isLiked,
             onLikeClick = onLikeClick,
             onCommentClick = onCommentClick,

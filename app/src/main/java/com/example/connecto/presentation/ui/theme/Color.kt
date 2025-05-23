@@ -1,6 +1,6 @@
 import androidx.compose.ui.graphics.Color
 
-val DarkGray = Color(0xFF202020)
+val DarkGray = Color(0xFF020202)
 val MediumGray = Color(0xFF404040)
 val LightGray = Color(0xFF606060)
 val TextWhite = Color(0xFFEEEEEE)

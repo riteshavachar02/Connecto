@@ -6,6 +6,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -28,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.connecto.presentation.ui.theme.spaceMedium
 import com.example.connecto.presentation.ui.theme.spaceSmall
 
 @Composable
@@ -56,9 +58,9 @@ fun RowScope.StandardBottomNavItem(
         modifier = modifier,
         enabled = enabled,
         colors = NavigationBarItemDefaults.colors(
-            selectedIconColor = Color.Transparent,
+            selectedIconColor = MaterialTheme.colorScheme.primary,
             selectedTextColor = Color.Transparent,
-            unselectedIconColor = Color.Transparent,
+            unselectedIconColor = HintGray,
             unselectedTextColor = Color.Transparent,
             disabledIconColor = Color.Transparent,
             disabledTextColor = Color.Transparent,
@@ -66,12 +68,7 @@ fun RowScope.StandardBottomNavItem(
         icon = {
             Box(
                 modifier = Modifier
-                    .size(40.dp)
-                    .padding(
-                        start = spaceSmall,
-                        end = spaceSmall,
-                        bottom = spaceSmall
-                    )
+                    .size(width = 40.dp, height = 50.dp)
                     .drawBehind {
                         if(lineLength.value > 0f) {
                             drawLine(
@@ -96,10 +93,8 @@ fun RowScope.StandardBottomNavItem(
                         imageVector = icon,
                         contentDescription = contentDescription,
                         modifier = Modifier
-                            .size(40.dp)
+                            .size(30.dp)
                             .align(Alignment.Center),
-                        tint = if (selected) selectedColor
-                        else unselectedColor
                     )
                 }
                 if (alertCount!= null) {
@@ -112,12 +107,12 @@ fun RowScope.StandardBottomNavItem(
                         text = alertText,
                         color = MaterialTheme.colorScheme.onPrimary,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 9.sp,
+                        fontSize = 8.sp,
                         textAlign = TextAlign.Center,
                         modifier = Modifier
                             .align(Alignment.TopCenter)
-                            .offset(20.dp)
-                            .size(22.dp)
+                            .offset(15.dp)
+                            .size(20.dp)
                             .clip(CircleShape)
                             .background(color = MaterialTheme.colorScheme.primary)
                     )
