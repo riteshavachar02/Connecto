@@ -1,14 +1,17 @@
 package com.example.connecto.presentation.main_feed
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
+import com.example.connecto.presentation.components.StandardScaffold
 import com.example.connecto.presentation.components.Post
 
 @Composable
 fun MainFeedScreen(
     navController: NavController
 ) {
-
     Post(
         post = com.example.connecto.domain.models.Post(
             userName = "Cristiano Ronaldo",

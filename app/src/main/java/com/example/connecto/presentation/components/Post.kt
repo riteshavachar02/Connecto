@@ -56,7 +56,7 @@ import com.example.connecto.utils.Constants
 @Composable
 fun Post(
     post: Post,
-    profilePictureSize: Dp = 75.dp
+    profilePictureSize: Dp = 60.dp
 ) {
     Box(
         modifier = Modifier
