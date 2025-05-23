@@ -2,7 +2,6 @@ package com.example.connecto.presentation.components
 
 import DarkGray
 import HintGray
-import MediumGray
 import TextWhite
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,7 +11,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
@@ -50,7 +48,6 @@ import androidx.compose.ui.unit.sp
 import com.example.connecto.R
 import com.example.connecto.domain.models.Post
 import com.example.connecto.presentation.ui.theme.spaceExtraSmall
-import com.example.connecto.presentation.ui.theme.spaceLarge
 import com.example.connecto.presentation.ui.theme.spaceMedium
 import com.example.connecto.presentation.ui.theme.spaceSmall
 import com.example.connecto.utils.Constants

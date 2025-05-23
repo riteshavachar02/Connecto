@@ -7,7 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.connecto.presentation.components.StandardScaffold
 
 @Composable
 fun ActivityScreen(

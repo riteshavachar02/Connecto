@@ -2,13 +2,11 @@ package com.example.connecto.presentation.main_feed
 
 import MediumGray
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.connecto.presentation.components.StandardScaffold
 import com.example.connecto.presentation.components.Post
 
 @Composable
