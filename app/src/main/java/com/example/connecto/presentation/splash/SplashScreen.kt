@@ -11,8 +11,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha // Added for fade-in animation
-import androidx.compose.ui.draw.rotate // Added for rotation animation
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
@@ -29,11 +29,9 @@ fun SplashScreen(
     val scale = remember {
         Animatable(0f)
     }
-
     val alpha = remember {
         Animatable(0f)
     }
-
     val rotation = remember {
         Animatable(0f)
     }
