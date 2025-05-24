@@ -36,7 +36,7 @@ fun RowScope.StandardBottomNavItem(
     selected: Boolean = false,
     alertCount: Int? = null,
     selectedColor: Color = MaterialTheme.colorScheme.primary,
-    unselectedColor: Color = HintGray,
+    unselectedColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     enabled: Boolean = true,
     onClick: () -> Unit
 ) {
@@ -55,9 +55,10 @@ fun RowScope.StandardBottomNavItem(
         enabled = enabled,
         colors = NavigationBarItemDefaults.colors(
             selectedIconColor = MaterialTheme.colorScheme.primary,
-            selectedTextColor = Color.Transparent,
-            unselectedIconColor = HintGray,
-            unselectedTextColor = Color.Transparent,
+            selectedTextColor = MaterialTheme.colorScheme.primary,
+            indicatorColor = Color.Transparent,
+            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
+            unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
             disabledIconColor = Color.Transparent,
             disabledTextColor = Color.Transparent,
         ),

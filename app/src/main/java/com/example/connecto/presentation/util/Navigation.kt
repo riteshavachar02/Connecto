@@ -12,6 +12,7 @@ import com.example.connecto.presentation.main_feed.MainFeedScreen
 import com.example.connecto.presentation.login.LoginScreen
 import com.example.connecto.presentation.profile.ProfileScreen
 import com.example.connecto.presentation.register.RegisterScreen
+import com.example.connecto.presentation.search.SearchScreen
 import com.example.connecto.presentation.splash.SplashScreen
 
 @Composable
@@ -45,6 +46,9 @@ fun Navigation (
         }
         composable(Screen.ProfileScreen.route) {
             ProfileScreen(navController = navController)
+        }
+        composable(Screen.SearchScreen.route) {
+            SearchScreen(navController = navController)
         }
     }
 }

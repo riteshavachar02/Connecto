@@ -2,6 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.Connecto" parent="android:Theme.Material.Light.NoActionBar" >
-        <item name="android:statusBarColor" tools:targetApi="l">@color/dark_gray</item>
+        <item name="android:statusBarColor" >@color/dark_gray</item>
     </style>
 </resources>

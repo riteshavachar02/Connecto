@@ -4,18 +4,19 @@ import GreenAccent
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import DarkGray
+import HintGray
 import LightGray
 import MediumGray
 import TextWhite
 
-// Define the dark color scheme using your custom colors
 private val DarkColorScheme = darkColorScheme(
     primary = GreenAccent,
     background = DarkGray,
     onBackground = TextWhite,
     onPrimary = DarkGray,
     surface = MediumGray,
-    onSurface = LightGray
+    onSurface = LightGray,
+    onSurfaceVariant = HintGray
 )
 
 @Composable

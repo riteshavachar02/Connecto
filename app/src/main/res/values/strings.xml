@@ -24,4 +24,6 @@
     <string name="alert">Notifications</string>
     <string name="profile">Profile</string>
     <string name="make_post">Make Post</string>
+    <string name="back">Navigate back</string>
+    <string name="connecto">Connecto</string>
 </resources>
