@@ -5,18 +5,20 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.connecto.domain.models.Post
 import com.example.connecto.presentation.activity.ActivityScreen
 import com.example.connecto.presentation.chat.ChatScreen
 import com.example.connecto.presentation.create_post.CreatePostScreen
 import com.example.connecto.presentation.main_feed.MainFeedScreen
 import com.example.connecto.presentation.login.LoginScreen
+import com.example.connecto.presentation.post_detail.PostDetailScreen
 import com.example.connecto.presentation.profile.ProfileScreen
 import com.example.connecto.presentation.register.RegisterScreen
 import com.example.connecto.presentation.search.SearchScreen
 import com.example.connecto.presentation.splash.SplashScreen
 
 @Composable
-fun Navigation (
+fun Navigation(
     navController: NavHostController
 ) {
     NavHost(
@@ -49,6 +51,22 @@ fun Navigation (
         }
         composable(Screen.SearchScreen.route) {
             SearchScreen(navController = navController)
+        }
+        composable(Screen.PostDetailScreen.route) {
+            PostDetailScreen(
+                navController = navController,
+                Post(
+                    userName = "Cristiano Ronaldo",
+                    imageUrl = "",
+                    profileUrl = "",
+                    description = "Greatness isn't luck — it's relentless hard work and discipline. " +
+                            "Cristiano Ronaldo continues to inspire millions with every move. " +
+                            "Greatness isn't luck — it's relentless hard work and discipline. " +
+                            "Cristiano Ronaldo continues to inspire millions with every move.",
+                    likeCount = 17,
+                    commentCount = 10
+                )
+            )
         }
     }
 }

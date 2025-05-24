@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -20,6 +21,7 @@ import androidx.navigation.NavController
 import com.example.connecto.R
 import com.example.connecto.presentation.components.Post
 import com.example.connecto.presentation.components.StandardToolBar
+import com.example.connecto.presentation.ui.theme.spaceLarge
 import com.example.connecto.presentation.util.Screen
 
 @Composable
@@ -54,7 +56,9 @@ fun MainFeedScreen(
             }
         )
         LazyColumn(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = spaceLarge)
         ) {
             item {
                 Post(
@@ -65,8 +69,11 @@ fun MainFeedScreen(
                         description = "Greatness isn't luck — it's relentless hard work and discipline. " +
                                 "Cristiano Ronaldo continues to inspire millions with every move.",
                         likeCount = 17,
-                        commentCount = 10
-                    )
+                        commentCount = 10,
+                    ),
+                    onPostClick = {
+                        navController.navigate(Screen.PostDetailScreen.route)
+                    }
                 )
             }
             item {
@@ -79,7 +86,10 @@ fun MainFeedScreen(
                                 "Cristiano Ronaldo continues to inspire millions with every move.",
                         likeCount = 17,
                         commentCount = 10
-                    )
+                    ),
+                    onPostClick = {
+                        navController.navigate(Screen.PostDetailScreen.route)
+                    }
                 )
             }
             item {
@@ -92,7 +102,10 @@ fun MainFeedScreen(
                                 "Cristiano Ronaldo continues to inspire millions with every move.",
                         likeCount = 17,
                         commentCount = 10
-                    )
+                    ),
+                    onPostClick = {
+                        navController.navigate(Screen.PostDetailScreen.route)
+                    }
                 )
             }
             item {
@@ -105,7 +118,10 @@ fun MainFeedScreen(
                                 "Cristiano Ronaldo continues to inspire millions with every move.",
                         likeCount = 17,
                         commentCount = 10
-                    )
+                    ),
+                    onPostClick = {
+                        navController.navigate(Screen.PostDetailScreen.route)
+                    }
                 )
             }
         }

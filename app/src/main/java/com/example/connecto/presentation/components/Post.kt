@@ -47,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.connecto.R
 import com.example.connecto.domain.models.Post
+import com.example.connecto.presentation.ui.theme.profilePictureSize
 import com.example.connecto.presentation.ui.theme.spaceExtraSmall
 import com.example.connecto.presentation.ui.theme.spaceMedium
 import com.example.connecto.presentation.ui.theme.spaceSmall
@@ -56,7 +57,7 @@ import com.example.connecto.utils.Constants
 @Composable
 fun Post(
     post: Post,
-    profilePictureSize: Dp = 60.dp
+    onPostClick: () -> Unit = {}
 ) {
     Box(
         modifier = Modifier
@@ -70,10 +71,12 @@ fun Post(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .offset(y = profilePictureSize / 2f)
                 .shadow(5.dp)
                 .clip(MaterialTheme.shapes.medium)
                 .background(DarkGray)
+                .clickable {
+                    onPostClick()
+                }
         ) {
             Image(
                 painterResource(id = R.drawable.kermit),
