@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.sp
 import com.example.connecto.R
 import com.example.connecto.domain.models.Post
 import com.example.connecto.presentation.ui.theme.profilePictureSize
+import com.example.connecto.presentation.ui.theme.profilePictureSizeSmall
 import com.example.connecto.presentation.ui.theme.spaceExtraSmall
 import com.example.connecto.presentation.ui.theme.spaceMedium
 import com.example.connecto.presentation.ui.theme.spaceSmall
@@ -231,7 +232,7 @@ fun ActionBar(
             contentDescription = "Profile picture",
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(30.dp)
+                .size(profilePictureSizeSmall)
                 .clip(CircleShape)
         )
         Spacer(modifier = Modifier.width(spaceSmall))

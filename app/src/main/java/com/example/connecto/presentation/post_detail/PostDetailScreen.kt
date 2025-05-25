@@ -4,32 +4,45 @@ import DarkGray
 import MediumGray
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.connecto.R
+import com.example.connecto.domain.models.Comment
 import com.example.connecto.domain.models.Post
 import com.example.connecto.presentation.components.ActionBar
 import com.example.connecto.presentation.components.StandardToolBar
-import com.example.connecto.presentation.ui.theme.profilePictureSize
-import com.example.connecto.presentation.ui.theme.spaceExtraSmall
+import com.example.connecto.presentation.ui.theme.profilePictureSizeSmall
+import com.example.connecto.presentation.ui.theme.spaceLarge
 import com.example.connecto.presentation.ui.theme.spaceMedium
 import com.example.connecto.presentation.ui.theme.spaceSmall
 
@@ -55,60 +68,175 @@ fun PostDetailScreen(
             showArrowBack = true,
             modifier = Modifier.fillMaxWidth(),
         )
-        Box(
+        LazyColumn(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.surface)
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .shadow(5.dp)
-                    .clip(MaterialTheme.shapes.medium)
-                    .background(DarkGray)
-            ) {
-                Image(
-                    painterResource(id = R.drawable.kermit),
-                    contentDescription = "Post image",
-                    modifier = Modifier.fillMaxWidth()
-                )
+            item {
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(spaceMedium)
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.background)
                 ) {
-                    ActionBar(
-                        userName = "Cristiano Ronaldo",
-                        modifier = Modifier.fillMaxWidth(),
-                        onLikeClick = { isLiked ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .shadow(5.dp)
+                                .clip(MaterialTheme.shapes.medium)
+                                .background(DarkGray)
+                        ) {
+                            Image(
+                                painterResource(id = R.drawable.kermit),
+                                contentDescription = "Post image",
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(spaceLarge)
+                            ) {
+                                ActionBar(
+                                    userName = "Cristiano Ronaldo",
+                                    modifier = Modifier.fillMaxWidth(),
+                                    onLikeClick = { isLiked ->
 
-                        },
-                        onCommentClick = {
+                                    },
+                                    onCommentClick = {
 
-                        },
-                        onShareClick = {
+                                    },
+                                    onShareClick = {
 
-                        },
-                        onUserNameClick = {username ->
+                                    },
+                                    onUserNameClick = { username ->
 
+                                    }
+                                )
+                                Spacer(modifier = Modifier.height(spaceSmall))
+                                Text(
+                                    text = post.description,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                )
+                                Spacer(modifier = Modifier.height(spaceMedium))
+                                Text(
+                                    text = stringResource(
+                                        R.string.liked_by_x_people,
+                                        post.likeCount
+                                    ),
+                                    style = MaterialTheme.typography.bodyMedium
+                                )
+                            }
                         }
-                    )
-                    Spacer(modifier = Modifier.height(spaceSmall))
-                    Text(
-                        text = post.description,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                    Spacer(modifier = Modifier.height(spaceMedium))
-                    Text(
-                        text = stringResource(
-                                R.string.liked_by_x_people,
-                                post.likeCount
+                    }
+
+                }
+            }
+            items(20) {
+                Comment(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(
+                            horizontal = spaceMedium,
+                            vertical = spaceSmall
                         ),
-                        style = MaterialTheme.typography.headlineMedium.copy(
-                                fontSize = 16.sp
-                        )
+                    comment = Comment(
+                        userName = "Cristiano Ronaldo$it",
+                        comment = "Greatness isn't luck — it's relentless hard work and discipline." +
+                                "Cristiano Ronaldo continues to inspire millions with every move." +
+                                "Greatness isn't luck — it's relentless hard work and discipline." +
+                                "Cristiano Ronaldo continues to inspire millions with every move,"
+                    )
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun Comment(
+    modifier: Modifier = Modifier,
+    comment: Comment = Comment(),
+    onLikedClicked: (Boolean) -> Unit = {}
+) {
+    Card(
+        modifier = modifier,
+        shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.background,
+            contentColor = MaterialTheme.colorScheme.onBackground
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(spaceMedium)
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.ronaldo_profile),
+                        contentDescription = "Profile picture",
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .size(profilePictureSizeSmall)
+                    )
+                    Spacer(modifier = Modifier.width(spaceSmall))
+                    Text(
+                        text = comment.userName,
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                }
+                Text(
+                    text = "2 days ago",
+                    style = MaterialTheme.typography.bodyMedium,
+                    textAlign = TextAlign.Center
+                )
+            }
+            Spacer(modifier = Modifier.height(spaceMedium))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = comment.comment,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.weight(9f)
+                )
+                Spacer(modifier = Modifier.width(spaceSmall))
+                IconButton(
+                    onClick = {
+                        onLikedClicked(comment.isLiked)
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Favorite,
+                        contentDescription = if (comment.isLiked) {
+                            stringResource(id = R.string.unlike)
+                        } else stringResource(id = R.string.like)
                     )
                 }
             }
+            Spacer(modifier = Modifier.height(spaceMedium))
+            Text(
+                text = stringResource(id = R.string.liked_by_x_people, comment.likeCount),
+                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground
+            )
         }
     }
 }
