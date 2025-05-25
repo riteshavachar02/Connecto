@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -47,7 +46,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.connecto.R
 import com.example.connecto.domain.models.Post
-import com.example.connecto.presentation.ui.theme.profilePictureSize
 import com.example.connecto.presentation.ui.theme.profilePictureSizeSmall
 import com.example.connecto.presentation.ui.theme.spaceExtraSmall
 import com.example.connecto.presentation.ui.theme.spaceMedium
@@ -203,7 +201,7 @@ fun EngagementButtons(
             onClick = {
                 onShareClick()
             },
-            modifier = Modifier.size(iconSize)
+            modifier = Modifier.size(40.dp)
         ) {
             Icon(
                 imageVector = Icons.Filled.Share,

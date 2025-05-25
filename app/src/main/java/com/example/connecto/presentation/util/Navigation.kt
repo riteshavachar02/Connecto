@@ -4,13 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.connecto.domain.models.Post
 import com.example.connecto.presentation.activity.ActivityScreen
 import com.example.connecto.presentation.chat.ChatScreen
 import com.example.connecto.presentation.create_post.CreatePostScreen
-import com.example.connecto.presentation.main_feed.MainFeedScreen
 import com.example.connecto.presentation.login.LoginScreen
+import com.example.connecto.presentation.main_feed.MainFeedScreen
 import com.example.connecto.presentation.post_detail.PostDetailScreen
 import com.example.connecto.presentation.profile.ProfileScreen
 import com.example.connecto.presentation.register.RegisterScreen
