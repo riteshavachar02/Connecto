@@ -19,13 +19,14 @@ import androidx.navigation.NavController
 import com.example.connecto.R
 import com.example.connecto.domain.models.Activity
 import com.example.connecto.domain.util.ActivityAction
+import com.example.connecto.domain.util.DateFormatUtil
 import com.example.connecto.presentation.components.StandardToolBar
 import com.example.connecto.presentation.ui.theme.spaceSmall
 import kotlin.random.Random
 
 @Composable
 fun ActivityScreen(
-    navController: NavController
+    navController: NavController,
 ) {
     Column(
         modifier = Modifier
@@ -41,14 +42,13 @@ fun ActivityScreen(
                 )
             },
             navController = navController,
-            showArrowBack = true,
+            showArrowBack = false,
             modifier = Modifier.fillMaxWidth(),
         )
         LazyColumn(
             modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.surface),
-            contentPadding = PaddingValues(spaceSmall)
+                .fillMaxSize(),
+            contentPadding = PaddingValues(top = spaceSmall)
         ) {
             items(20) {
                 ActivityItem(
@@ -57,8 +57,11 @@ fun ActivityScreen(
                         actionType = if (Random.nextInt(2) == 0) {
                             ActivityAction.LikedPost
                         } else ActivityAction.CommentedOnPost,
-                        timeStamp = System.currentTimeMillis(),
-                    ),
+                        formattedTime = DateFormatUtil.timestampToFormattedString(
+                            timestamp = System.currentTimeMillis(),
+                            pattern = "MMM dd, HH:mm"
+                        ),
+                    )
                 )
                 if (it<19) {
                     Spacer(modifier = Modifier.height(spaceSmall))

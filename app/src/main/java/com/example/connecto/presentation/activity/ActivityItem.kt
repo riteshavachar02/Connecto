@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -18,7 +17,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.example.connecto.R
 import com.example.connecto.domain.models.Activity
@@ -35,14 +34,11 @@ fun ActivityItem(
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.background,
             contentColor = MaterialTheme.colorScheme.onBackground
-        ),
-        elevation = CardDefaults.cardElevation(5.dp)
-
+        )
     ) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
-                .size(55.dp)
                 .padding(spaceSmall),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
@@ -59,6 +55,12 @@ fun ActivityItem(
                 is ActivityAction.CommentedOnPost ->
                     stringResource(R.string.your_post)
             }
+            val fontSize: TextUnit = when(activity.actionType) {
+                is ActivityAction.LikedPost ->
+                    11.sp
+                is ActivityAction.CommentedOnPost ->
+                    10.sp
+            }
             Text(
                 text = buildAnnotatedString {
                     val boldStyle = SpanStyle(fontWeight = FontWeight.Bold)
@@ -70,10 +72,10 @@ fun ActivityItem(
                         append(text = actionText)
                     }
                 },
-                fontSize = 10.sp
+                fontSize = fontSize,
             )
             Text(
-                text = activity.timeStamp.toString(),
+                text = activity.formattedTime,
                 fontSize = 8.sp,
                 textAlign = TextAlign.Right
             )

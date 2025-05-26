@@ -5,5 +5,5 @@ import com.example.connecto.domain.util.ActivityAction
 data class Activity(
     val userName: String,
     val actionType: ActivityAction,
-    val timeStamp: Long
+    val formattedTime: String
 )
