@@ -31,4 +31,6 @@
     <string name="liked">liked</string>
     <string name="commented_on">commented on</string>
     <string name="your_post">your post</string>
+    <string name="more_option">More setting option</string>
+    <string name="banner_image">Banner image</string>
 </resources>
