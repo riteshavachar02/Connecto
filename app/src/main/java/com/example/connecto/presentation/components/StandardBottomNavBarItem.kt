@@ -1,6 +1,5 @@
 package com.example.connecto.presentation.components
 
-import HintGray
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -57,8 +56,8 @@ fun RowScope.StandardBottomNavItem(
             selectedIconColor = MaterialTheme.colorScheme.primary,
             selectedTextColor = MaterialTheme.colorScheme.primary,
             indicatorColor = Color.Transparent,
-            unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
-            unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant,
+            unselectedIconColor = MaterialTheme.colorScheme.onBackground,
+            unselectedTextColor = MaterialTheme.colorScheme.onBackground,
             disabledIconColor = Color.Transparent,
             disabledTextColor = Color.Transparent,
         ),
