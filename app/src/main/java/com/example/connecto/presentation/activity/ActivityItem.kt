@@ -76,7 +76,7 @@ fun ActivityItem(
             )
             Text(
                 text = activity.formattedTime,
-                fontSize = 8.sp,
+                fontSize = 9.sp,
                 textAlign = TextAlign.Right
             )
         }
