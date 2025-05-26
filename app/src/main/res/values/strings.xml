@@ -33,4 +33,10 @@
     <string name="your_post">your post</string>
     <string name="more_option">More setting option</string>
     <string name="banner_image">Banner image</string>
+    <string name="edit">Edit</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="posts">Posts</string>
+    <string name="unfollow">Unfollow</string>
+    <string name="follow">Follow</string>
 </resources>

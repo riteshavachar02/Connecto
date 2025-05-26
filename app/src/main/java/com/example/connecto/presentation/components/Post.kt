@@ -56,6 +56,8 @@ import com.example.connecto.utils.Constants
 @Composable
 fun Post(
     post: Post,
+    modifier: Modifier = Modifier,
+    showProfilePicture: Boolean = true,
     onPostClick: () -> Unit = {}
 ) {
     Box(
@@ -89,6 +91,7 @@ fun Post(
                 ActionBar(
                     userName = "Cristiano Ronaldo",
                     modifier = Modifier.fillMaxWidth(),
+                    showProfilePicture = showProfilePicture,
                     onLikeClick = { isLiked ->
 
                     },
@@ -215,6 +218,7 @@ fun EngagementButtons(
 fun ActionBar(
     modifier: Modifier = Modifier,
     isLiked: Boolean = false,
+    showProfilePicture: Boolean = true,
     onLikeClick: (Boolean) -> Unit = {},
     onCommentClick: () -> Unit = {},
     onShareClick: () -> Unit = {},
@@ -225,14 +229,16 @@ fun ActionBar(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
     ){
-        Image(
-            painterResource(id = R.drawable.ronaldo_profile),
-            contentDescription = "Profile picture",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(profilePictureSizeSmall)
-                .clip(CircleShape)
-        )
+        if (showProfilePicture) {
+            Image(
+                painterResource(id = R.drawable.ronaldo_profile),
+                contentDescription = "Profile picture",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(profilePictureSizeSmall)
+                    .clip(CircleShape)
+            )
+        }
         Spacer(modifier = Modifier.width(spaceSmall))
         Text(
             text = userName,

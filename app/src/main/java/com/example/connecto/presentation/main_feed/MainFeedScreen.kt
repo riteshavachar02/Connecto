@@ -60,7 +60,7 @@ fun MainFeedScreen(
                 .fillMaxSize()
                 .padding(bottom = spaceLarge)
         ) {
-            item {
+            items(20) {
                 Post(
                     post = com.example.connecto.domain.models.Post(
                         userName = "Cristiano Ronaldo",
@@ -70,54 +70,6 @@ fun MainFeedScreen(
                                 "Cristiano Ronaldo continues to inspire millions with every move.",
                         likeCount = 17,
                         commentCount = 10,
-                    ),
-                    onPostClick = {
-                        navController.navigate(Screen.PostDetailScreen.route)
-                    }
-                )
-            }
-            item {
-                Post(
-                    post = com.example.connecto.domain.models.Post(
-                        userName = "Cristiano Ronaldo",
-                        imageUrl = "",
-                        profileUrl = "",
-                        description = "Greatness isn't luck — it's relentless hard work and discipline. " +
-                                "Cristiano Ronaldo continues to inspire millions with every move.",
-                        likeCount = 17,
-                        commentCount = 10
-                    ),
-                    onPostClick = {
-                        navController.navigate(Screen.PostDetailScreen.route)
-                    }
-                )
-            }
-            item {
-                Post(
-                    post = com.example.connecto.domain.models.Post(
-                        userName = "Cristiano Ronaldo",
-                        imageUrl = "",
-                        profileUrl = "",
-                        description = "Greatness isn't luck — it's relentless hard work and discipline. " +
-                                "Cristiano Ronaldo continues to inspire millions with every move.",
-                        likeCount = 17,
-                        commentCount = 10
-                    ),
-                    onPostClick = {
-                        navController.navigate(Screen.PostDetailScreen.route)
-                    }
-                )
-            }
-            item {
-                Post(
-                    post = com.example.connecto.domain.models.Post(
-                        userName = "Cristiano Ronaldo",
-                        imageUrl = "",
-                        profileUrl = "",
-                        description = "Greatness isn't luck — it's relentless hard work and discipline. " +
-                                "Cristiano Ronaldo continues to inspire millions with every move.",
-                        likeCount = 17,
-                        commentCount = 10
                     ),
                     onPostClick = {
                         navController.navigate(Screen.PostDetailScreen.route)
