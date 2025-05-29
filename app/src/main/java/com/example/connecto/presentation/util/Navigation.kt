@@ -8,6 +8,7 @@ import com.example.connecto.domain.models.Post
 import com.example.connecto.presentation.activity.ActivityScreen
 import com.example.connecto.presentation.chat.ChatScreen
 import com.example.connecto.presentation.create_post.CreatePostScreen
+import com.example.connecto.presentation.edit_profile.EditProfileScreen
 import com.example.connecto.presentation.login.LoginScreen
 import com.example.connecto.presentation.main_feed.MainFeedScreen
 import com.example.connecto.presentation.post_detail.PostDetailScreen
@@ -47,6 +48,9 @@ fun Navigation(
         }
         composable(Screen.ProfileScreen.route) {
             ProfileScreen(navController = navController)
+        }
+        composable(Screen.EditProfileScreen.route) {
+            EditProfileScreen(navController = navController)
         }
         composable(Screen.SearchScreen.route) {
             SearchScreen(navController = navController)
