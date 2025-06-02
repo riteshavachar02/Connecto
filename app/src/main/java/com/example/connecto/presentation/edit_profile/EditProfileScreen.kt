@@ -120,8 +120,3 @@ fun EditProfileScreen(
     }
 }
 
-@Preview
-@Composable
-private fun EditProfileScreenPreview() {
-    EditProfileScreen(navController = rememberNavController())
-}
