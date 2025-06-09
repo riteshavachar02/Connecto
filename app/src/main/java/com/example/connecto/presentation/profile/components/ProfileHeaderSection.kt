@@ -47,22 +47,9 @@ fun ProfileHeaderSection(
             .fillMaxWidth()
             .background(
                 color = MaterialTheme.colorScheme.background
-            )
-            .offset(y = -profilePictureSizeLarge / 2f),
+            ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.ronaldo_profile),
-            contentDescription = stringResource(id = R.string.profile),
-            modifier = Modifier
-                .size(profilePictureSizeLarge)
-                .clip(CircleShape)
-                .border(
-                    width = 1.dp,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    shape = CircleShape
-                )
-        )
         Row(
             modifier = Modifier
                 .offset(
