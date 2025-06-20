@@ -1,6 +1,7 @@
 package com.example.connecto.presentation.profile
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,6 +25,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
@@ -55,7 +57,14 @@ fun ProfileScreen(
     var toolbarOffsetY by remember {
         mutableStateOf(0f)
     }
+    val iconSizeExpanded = 35.dp
     val toolbarHeightCollapsed = 75.dp
+    val imageCollapsedOffsetY = remember {
+        (toolbarHeightCollapsed - profilePictureSizeLarge / 2f) /2f
+    }
+    val iconCollapsedOffsetY = remember {
+        (toolbarHeightCollapsed - iconSizeExpanded) / 2f
+    }
     val bannerHeight = (LocalConfiguration.current.screenWidthDp / 2.5f).dp
     val toolbarHeightExpanded = remember {
         bannerHeight + profilePictureSizeLarge
@@ -66,13 +75,13 @@ fun ProfileScreen(
     var expandedRatio by remember {
         mutableStateOf(1f)
     }
-    val imageCollapsedOffsetY = remember {
-        (toolbarHeightCollapsed - profilePictureSizeLarge / 2f) /2f
-    }
     val nestedScrollConnection = remember {
         object : NestedScrollConnection {
             override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
                 val delta = available.y
+                if(delta > 0f && lazyListState.firstVisibleItemIndex != 0) {
+                    return Offset.Zero
+                }
                 val newOffset = toolbarOffsetY + delta
                 toolbarOffsetY = newOffset.coerceIn(
                     minimumValue = -maxOffSet.toPx(),
@@ -147,7 +156,12 @@ fun ProfileScreen(
                             minimumValue = toolbarHeightCollapsed,
                             maximumValue = bannerHeight
                         )
-                    )
+                    ),
+                iconModifier = Modifier
+                    .graphicsLayer {
+                        translationY = (1f - expandedRatio) *
+                                -iconCollapsedOffsetY.toPx()
+                    }
             )
             Image(
                 painter = painterResource(id = R.drawable.ronaldo_profile),
