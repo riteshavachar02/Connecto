@@ -1,4 +1,5 @@
 [versions]
+accompanistSystemuicontroller = "0.33.2-alpha"
 activityComposeVersion = "1.8.2"
 agp = "8.6.0"
 androidxEspressoCore = "3.5.0"
@@ -47,6 +48,7 @@ uiTestJunit4Android = "1.7.8"
 material3Android = "1.3.2"
 
 [libraries]
+accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
 androidx-activity-compose-v182 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-ktx-v1120 = { module = "androidx.core:core-ktx", version.ref = "coreKtxVersion" }

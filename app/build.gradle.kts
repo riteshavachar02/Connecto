@@ -18,9 +18,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
@@ -32,47 +30,50 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.8"
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1,LICENSE.md,LICENSE-notice.md,DEPENDENCIES}"
         }
     }
-
 }
 
 dependencies {
-    // Core dependencies
+    // Core
     implementation(libs.androidx.core.ktx.v1120)
     implementation(libs.androidx.lifecycle.runtime.ktx.v262)
     implementation(libs.androidx.activity.compose.v182)
 
-    // Jetpack Compose dependencies
+    // Compose
     implementation(libs.ui)
     implementation(libs.ui.tooling.preview)
-    implementation(libs.material3)
-    implementation(libs.androidx.ui.test.junit4.android)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
-    implementation (libs.androidx.material.icons.extended)
+    implementation(libs.material3)
     implementation(libs.toolbar.compose)
+    implementation(libs.androidx.material.icons.extended)
 
-    // Navigation for Compose
+    // Navigation
     implementation(libs.androidx.navigation.compose)
 
-    // Dagger Hilt (Dependency Injection)
+    // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
@@ -81,18 +82,19 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-    // Retrofit for API calls
+    // Network - Retrofit + OkHttp
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
-
-    // OkHttp for networking
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
 
-    // Timber (for logging)
+    // Accompanist - System UI Controller
+    implementation(libs.accompanist.systemuicontroller)
+
+    // Logger
     implementation(libs.timber)
 
-    // Testing dependencies
+    // Testing (unit)
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.core.testing)
@@ -101,11 +103,11 @@ dependencies {
     testImplementation(libs.mockk)
     testImplementation(libs.robolectric)
 
+    // Testing (instrumentation)
     androidTestImplementation(libs.androidx.junit.v115)
     androidTestImplementation(libs.androidx.espresso.core.v350)
     androidTestImplementation(libs.ui.test.junit4)
     androidTestImplementation(libs.hilt.android.testing)
     kaptAndroidTest(libs.hilt.android.compiler.v248)
-    androidTestImplementation(libs.mockwebserver)
     androidTestImplementation(libs.mockk.android)
 }
