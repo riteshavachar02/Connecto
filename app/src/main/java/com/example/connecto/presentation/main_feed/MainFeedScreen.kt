@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.connecto.R
 import com.example.connecto.presentation.components.Post
@@ -32,6 +33,7 @@ fun MainFeedScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(MediumGray)
+            .padding(bottom = 42.dp )
     ) {
         StandardToolBar(
             navController = navController,

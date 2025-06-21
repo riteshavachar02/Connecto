@@ -2,16 +2,7 @@ package com.example.connecto.presentation.profile.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -32,39 +23,39 @@ import com.example.connecto.presentation.util.toPx
 fun BannerSection(
     modifier: Modifier = Modifier,
     iconSize: Dp = 35.dp,
-    iconModifier: Modifier = Modifier,
+    leftIconModifier: Modifier = Modifier,
+    rightIconModifier: Modifier = Modifier,
     onGitHubClick: () -> Unit = {},
     onInstagramClick: () -> Unit = {},
     onLinkedinClick: () -> Unit = {}
 ) {
-    Column(
-        modifier = modifier
-    ) {
+    Column(modifier = modifier) {
         BoxWithConstraints(
             modifier = modifier
         ) {
+            // Background Banner Image
             Image(
                 painter = painterResource(id = R.drawable.channelart),
                 contentDescription = stringResource(id = R.string.banner_image),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier = Modifier.fillMaxSize()
             )
+
+            // Dark gradient overlay for better icon visibility
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(
-                        brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Transparent,
-                                Color.Black
-                            ),
+                        Brush.verticalGradient(
+                            colors = listOf(Color.Transparent, Color.Black),
                             startY = constraints.maxHeight - iconSize.toPx() * 2f
                         )
                     )
             )
+
+            // Left Row with Tech Logos
             Row(
-                modifier = iconModifier
+                modifier = leftIconModifier
                     .height(iconSize)
                     .align(Alignment.BottomStart)
                     .padding(spaceSmall)
@@ -88,8 +79,10 @@ fun BannerSection(
                     modifier = Modifier.height(iconSize)
                 )
             }
+
+            // Right Row with Social Icons
             Row(
-                modifier = iconModifier
+                modifier = rightIconModifier
                     .height(iconSize)
                     .align(Alignment.BottomEnd)
                     .padding(spaceSmall)
@@ -110,7 +103,7 @@ fun BannerSection(
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_linkedin_icon_1),
-                        contentDescription = "Linkedin Logo",
+                        contentDescription = "LinkedIn Logo",
                         modifier = Modifier.size(iconSize)
                     )
                 }

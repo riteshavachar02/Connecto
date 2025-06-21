@@ -18,53 +18,56 @@ import com.example.connecto.presentation.search.SearchScreen
 import com.example.connecto.presentation.splash.SplashScreen
 
 @Composable
-fun Navigation(
-    navController: NavHostController
-) {
+fun Navigation(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.SplashScreen.route
+        startDestination = Screen.ProfileScreen.route
     ) {
+        // Splash & Auth
         composable(Screen.SplashScreen.route) {
-            SplashScreen(navController = navController)
+            SplashScreen(navController)
         }
         composable(Screen.LoginScreen.route) {
-            LoginScreen(navController = navController)
+            LoginScreen(navController)
         }
         composable(Screen.RegisterScreen.route) {
-            RegisterScreen(navController = navController)
+            RegisterScreen(navController)
         }
+
+        // Main App Screens
         composable(Screen.MainFeedScreen.route) {
-            MainFeedScreen(navController = navController)
+            MainFeedScreen(navController)
         }
         composable(Screen.ChatScreen.route) {
-            ChatScreen(navController = navController)
+            ChatScreen(navController)
         }
         composable(Screen.CreatePostScreen.route) {
-            CreatePostScreen(navController = navController)
+            CreatePostScreen(navController)
         }
         composable(Screen.ActivityScreen.route) {
-            ActivityScreen(navController = navController)
+            ActivityScreen(navController)
         }
         composable(Screen.ProfileScreen.route) {
-            ProfileScreen(navController = navController)
+            ProfileScreen(navController)
         }
+
+        // Profile Utilities
         composable(Screen.EditProfileScreen.route) {
-            EditProfileScreen(navController = navController)
+            EditProfileScreen(navController)
         }
         composable(Screen.SearchScreen.route) {
-            SearchScreen(navController = navController)
+            SearchScreen(navController)
         }
+
+        // Static Post Detail Screen (for now)
         composable(Screen.PostDetailScreen.route) {
             PostDetailScreen(
                 navController = navController,
-                Post(
+                post = Post(
                     userName = "Cristiano Ronaldo",
                     imageUrl = "",
                     profileUrl = "",
                     description = "Greatness isn't luck — it's relentless hard work and discipline. " +
-                            "Cristiano Ronaldo continues to inspire millions with every move. " +
-                            "Greatness isn't luck — it's relentless hard work and discipline. " +
                             "Cristiano Ronaldo continues to inspire millions with every move.",
                     likeCount = 17,
                     commentCount = 10

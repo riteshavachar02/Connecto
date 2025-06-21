@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -46,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.connecto.R
 import com.example.connecto.domain.models.Post
+import com.example.connecto.presentation.ui.theme.profilePictureSizeMedium
 import com.example.connecto.presentation.ui.theme.profilePictureSizeSmall
 import com.example.connecto.presentation.ui.theme.spaceExtraSmall
 import com.example.connecto.presentation.ui.theme.spaceMedium
@@ -72,8 +74,8 @@ fun Post(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .shadow(5.dp)
                 .clip(MaterialTheme.shapes.medium)
+                .shadow(5.dp)
                 .background(DarkGray)
                 .clickable {
                     onPostClick()
@@ -86,25 +88,42 @@ fun Post(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(spaceMedium)
+                    .padding(spaceSmall)
             ) {
-                ActionBar(
-                    userName = "Cristiano Ronaldo",
-                    modifier = Modifier.fillMaxWidth(),
-                    showProfilePicture = showProfilePicture,
-                    onLikeClick = { isLiked ->
-
-                    },
-                    onCommentClick = {
-
-                    },
-                    onShareClick = {
-
-                    },
-                    onUserNameClick = {username ->
-
+                Row(
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    if (showProfilePicture) {
+                        Image(
+                            painterResource(id = R.drawable.ronaldo_profile),
+                            contentDescription = "Profile picture",
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier
+                                .size(profilePictureSizeSmall)
+                                .clip(CircleShape)
+                        )
                     }
-                )
+                    Spacer(modifier = Modifier.width(spaceSmall))
+                    ActionBar(
+                        userName = "Cristiano Ronaldo",
+                        modifier = Modifier.fillMaxWidth(),
+                        showProfilePicture = showProfilePicture,
+                        onLikeClick = { isLiked ->
+
+                        },
+                        onCommentClick = {
+
+                        },
+                        onShareClick = {
+
+                        },
+                        onUserNameClick = {username ->
+
+                        }
+                    )
+                }
                 Spacer(modifier = Modifier.height(spaceSmall))
                 Text(
                     text = buildAnnotatedString {
@@ -119,9 +138,9 @@ fun Post(
                             )
                         }
                     },
-                    style = MaterialTheme.typography.bodyMedium,
                     overflow = TextOverflow.Ellipsis,
-                    maxLines = Constants.MAX_POST_DESCRIPTION_LINES
+                    maxLines = Constants.MAX_POST_DESCRIPTION_LINES,
+                    style = MaterialTheme.typography.bodyMedium,
                 )
                 Spacer(modifier = Modifier.height(spaceMedium))
                 Row(
@@ -187,7 +206,7 @@ fun EngagementButtons(
                 }
             )
         }
-        Spacer(modifier = Modifier.width(spaceMedium))
+        Spacer(modifier = Modifier.width(spaceSmall))
         IconButton(
             onClick = {
                 onCommentClick()
@@ -199,7 +218,7 @@ fun EngagementButtons(
                 contentDescription = stringResource(id = R.string.comment)
             )
         }
-        Spacer(modifier = Modifier.width(spaceMedium))
+        Spacer(modifier = Modifier.width(spaceSmall))
         IconButton(
             onClick = {
                 onShareClick()
@@ -226,20 +245,10 @@ fun ActionBar(
     onUserNameClick: (String) -> Unit = {}
 ) {
     Row(
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
     ){
-        if (showProfilePicture) {
-            Image(
-                painterResource(id = R.drawable.ronaldo_profile),
-                contentDescription = "Profile picture",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(profilePictureSizeSmall)
-                    .clip(CircleShape)
-            )
-        }
-        Spacer(modifier = Modifier.width(spaceSmall))
         Text(
             text = userName,
             style = TextStyle(
@@ -259,5 +268,4 @@ fun ActionBar(
             onShareClick = onShareClick,
         )
     }
-
 }
