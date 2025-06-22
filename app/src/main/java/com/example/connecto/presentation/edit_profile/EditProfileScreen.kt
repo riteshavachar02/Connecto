@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.connecto.R
@@ -38,12 +39,13 @@ import com.example.connecto.presentation.util.Screen
 
 @Composable
 fun EditProfileScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: EditProfileViewModel = hiltViewModel()
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MediumGray)
+            .background(MaterialTheme.colorScheme.background)
     ) {
         StandardToolBar(
             navController = navController,
@@ -68,11 +70,6 @@ fun EditProfileScreen(
                 }
             }
         )
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MediumGray)
-        ) {  }
         Image(
             painter = painterResource(id = R.drawable.channelart),
             contentDescription = stringResource(id = R.string.banner_image),
@@ -92,7 +89,7 @@ fun EditProfileScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ronaldo_profile),
+                painter = painterResource(id = R.drawable.default_user),
                 contentDescription = stringResource(id = R.string.profile),
                 modifier = Modifier
                     .size(profilePictureSizeLarge)
@@ -112,11 +109,9 @@ fun EditProfileScreen(
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.background)
             ) {
-                StandardTextField(
-
-                ) {}
             }
         }
     }
+
 }
 

@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,6 +28,7 @@ import com.example.connecto.R
 import com.example.connecto.presentation.components.StandardTextField
 import com.example.connecto.presentation.ui.theme.spaceLarge
 import com.example.connecto.presentation.ui.theme.spaceMedium
+import com.example.connecto.presentation.util.Screen
 
 @Composable
 fun RegisterScreen (
@@ -112,13 +114,15 @@ fun RegisterScreen (
                     append(signupText)
                 }
             },
-
+            textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
                 .clickable {
-                    navController.popBackStack()
+                    navController.navigate(
+                        Screen.LoginScreen.route
+                    )
                 }
         )
     }

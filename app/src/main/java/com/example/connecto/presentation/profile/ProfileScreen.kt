@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.connecto.R
 import com.example.connecto.domain.models.User
@@ -34,12 +35,13 @@ import com.example.connecto.presentation.util.toPx
 
 @Composable
 fun ProfileScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: ProfileViewModel = hiltViewModel()
 ) {
     // === State and Config ===
     val lazyListState = rememberLazyListState()
-    var toolbarOffsetY by remember { mutableFloatStateOf(0f) }
-    var expandedRatio by remember { mutableFloatStateOf(1f) }
+    val toolbarOffsetY by viewModel.toolbarOffsetY
+    val expandedRatio by viewModel.expendedRatio
 
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     val bannerHeight = (screenWidth / 2.5f)
@@ -48,7 +50,7 @@ fun ProfileScreen(
     val maxOffset = toolbarHeightExpanded - toolbarHeightCollapsed
 
     val iconSizeExpanded = 35.dp
-    val imageCollapsedOffsetY = (toolbarHeightCollapsed - profilePictureSizeLarge / 2f) / 2f
+    val imageCollapsedOffsetY = remember { (toolbarHeightCollapsed - profilePictureSizeLarge / 2f) / 2f }
     val iconCollapsedOffsetY = (toolbarHeightCollapsed - iconSizeExpanded) / 2f
 
     val iconCenterOffset = (screenWidth.toPx() / 4f -
@@ -63,8 +65,8 @@ fun ProfileScreen(
                 if (delta > 0f && lazyListState.firstVisibleItemIndex != 0) return Offset.Zero
 
                 val newOffset = (toolbarOffsetY + delta).coerceIn(-maxOffset.toPx(), 0f)
-                toolbarOffsetY = newOffset
-                expandedRatio = (toolbarOffsetY + maxOffset.toPx()) / maxOffset.toPx()
+                viewModel.setToolbarOffsetY(newOffset)
+                viewModel.setExpandedRatio((toolbarOffsetY + maxOffset.toPx()) / maxOffset.toPx())
                 return Offset.Zero
             }
         }
@@ -95,7 +97,12 @@ fun ProfileScreen(
                         followersCount = 250,
                         followingCount = 200,
                         postCount = 50
-                    )
+                    ),
+                    onEditClick = {
+                        navController.navigate(
+                            Screen.EditProfileScreen.route
+                        )
+                    }
                 )
             }
 
