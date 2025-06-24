@@ -1,14 +1,9 @@
 package com.example.connecto.presentation.components
 
-import DarkGray
-import GreenAccent
-import HintGray
-import LightGray
-import MediumGray
-import TextGray
-import TextWhite
+import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -21,6 +16,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
@@ -28,16 +25,25 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import com.example.connecto.R
+import com.example.connecto.presentation.ui.theme.iconSizeMedium
 
 @Composable
 fun StandardTextField(
+    modifier: Modifier = Modifier,
     text: String = "",
     hint: String = "",
+    maxLength: Int = 40,
     error: String = "",
-    showPasswordToggle: Boolean = false,
-    onPasswordToggleClick: (Boolean) -> Unit = {},
+    style: TextStyle = TextStyle(
+        color = MaterialTheme.colorScheme.onBackground
+    ),
+    singleLine: Boolean = true,
+    maxLines: Int = 1,
+    leadingIcon: ImageVector? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
     isPasswordToggleDisplayed: Boolean = keyboardType == KeyboardType.Password,
+    isPasswordVisible: Boolean = false,
+    onPasswordToggleClick: (Boolean) -> Unit = {},
     onValueChange: (String) -> Unit
 ) {
     Column(
@@ -46,14 +52,20 @@ fun StandardTextField(
     ) {
         TextField(
             value = text,
-            onValueChange = onValueChange,
+            onValueChange = {
+                if (it.length <= maxLength) {
+                    onValueChange(it)
+                }
+            },
+            maxLines = maxLines,
+            textStyle = style,
             colors = TextFieldDefaults.colors(
-                focusedTextColor = MaterialTheme.colorScheme.onBackground,
+                focusedTextColor = MaterialTheme.colorScheme.background,
                 unfocusedTextColor = MaterialTheme.colorScheme.background,
                 disabledTextColor = MaterialTheme.colorScheme.onSurface,
                 errorTextColor = MaterialTheme.colorScheme.error,
 
-                focusedContainerColor = MaterialTheme.colorScheme.background,
+                focusedContainerColor = MaterialTheme.colorScheme.onBackground,
                 unfocusedContainerColor = MaterialTheme.colorScheme.onBackground,
                 disabledContainerColor = MaterialTheme.colorScheme.surface,
                 errorContainerColor = MaterialTheme.colorScheme.surface,
@@ -63,7 +75,7 @@ fun StandardTextField(
                 errorIndicatorColor = MaterialTheme.colorScheme.error,
 
                 cursorColor = MaterialTheme.colorScheme.primary,
-                focusedPlaceholderColor = MaterialTheme.colorScheme.surface
+                focusedPlaceholderColor = MaterialTheme.colorScheme.background
             ),
             placeholder = {
                 Text(
@@ -75,32 +87,47 @@ fun StandardTextField(
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType
             ),
-            visualTransformation = if (!showPasswordToggle && isPasswordToggleDisplayed) {
+            visualTransformation = if (!isPasswordVisible && isPasswordToggleDisplayed) {
                 PasswordVisualTransformation()
             } else {
                 VisualTransformation.None
             },
             singleLine = true,
-            trailingIcon = {
-                if (isPasswordToggleDisplayed) {
-                    IconButton(onClick = {
-                        onPasswordToggleClick(!showPasswordToggle)
-                    }) {
+            leadingIcon = if (leadingIcon != null) {
+                val icon: @Composable () -> Unit = {
+                    Icon(
+                        imageVector = leadingIcon,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.background,
+                        modifier = Modifier.size(iconSizeMedium)
+                    )
+                }
+                icon
+            } else null,
+            trailingIcon = if(isPasswordToggleDisplayed) {
+                val icon: @Composable () -> Unit = {
+                    IconButton(
+                        onClick = {
+                            onPasswordToggleClick(!isPasswordVisible)
+                        },
+                    ) {
                         Icon(
-                            imageVector = if (showPasswordToggle) {
+                            imageVector = if (isPasswordVisible) {
                                 Icons.Filled.VisibilityOff
                             } else {
                                 Icons.Filled.Visibility
                             },
-                            contentDescription = if (showPasswordToggle) {
-                                stringResource(R.string.password_visible_content_description)
+                            tint = Color.White,
+                            contentDescription = if (isPasswordVisible) {
+                                stringResource(id = R.string.password_visible_content_description)
                             } else {
-                                stringResource(R.string.password_hide_content_description)
+                                stringResource(id = R.string.password_hide_content_description)
                             }
                         )
                     }
                 }
-            },
+                icon
+            } else null,
             modifier = Modifier
                 .fillMaxWidth()
         )
