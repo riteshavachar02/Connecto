@@ -1,13 +1,17 @@
 package com.example.connecto.presentation.components
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -16,7 +20,6 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -24,8 +27,9 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import com.example.connecto.R
-import com.example.connecto.presentation.ui.theme.iconSizeMedium
+import com.example.connecto.presentation.ui.theme.IconSizeMedium
 
 @Composable
 fun StandardTextField(
@@ -35,7 +39,7 @@ fun StandardTextField(
     maxLength: Int = 40,
     error: String = "",
     style: TextStyle = TextStyle(
-        color = MaterialTheme.colorScheme.onBackground
+        color = MaterialTheme.colorScheme.background
     ),
     singleLine: Boolean = true,
     maxLines: Int = 1,
@@ -58,7 +62,7 @@ fun StandardTextField(
                 }
             },
             maxLines = maxLines,
-            textStyle = style,
+//            textStyle = style,
             colors = TextFieldDefaults.colors(
                 focusedTextColor = MaterialTheme.colorScheme.background,
                 unfocusedTextColor = MaterialTheme.colorScheme.background,
@@ -70,11 +74,11 @@ fun StandardTextField(
                 disabledContainerColor = MaterialTheme.colorScheme.surface,
                 errorContainerColor = MaterialTheme.colorScheme.surface,
 
-                focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+                focusedIndicatorColor = MaterialTheme.colorScheme.background,
                 unfocusedIndicatorColor = MaterialTheme.colorScheme.surface,
                 errorIndicatorColor = MaterialTheme.colorScheme.error,
 
-                cursorColor = MaterialTheme.colorScheme.primary,
+                cursorColor = MaterialTheme.colorScheme.background,
                 focusedPlaceholderColor = MaterialTheme.colorScheme.background
             ),
             placeholder = {
@@ -92,18 +96,32 @@ fun StandardTextField(
             } else {
                 VisualTransformation.None
             },
-            singleLine = true,
+            singleLine = singleLine,
             leadingIcon = if (leadingIcon != null) {
-                val icon: @Composable () -> Unit = {
-                    Icon(
-                        imageVector = leadingIcon,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.background,
-                        modifier = Modifier.size(iconSizeMedium)
-                    )
+                {
+                    Row(
+                        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically,
+                        ) {
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Icon(
+                            imageVector = leadingIcon,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.background,
+                            modifier = Modifier
+                                .size(IconSizeMedium)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp)) // Optional spacing
+                        Divider(
+                            color = MaterialTheme.colorScheme.surface,
+                            modifier = Modifier
+                                .height(IconSizeMedium)
+                                .width(1.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp)) // Optional spacing
+                    }
                 }
-                icon
             } else null,
+
             trailingIcon = if(isPasswordToggleDisplayed) {
                 val icon: @Composable () -> Unit = {
                     IconButton(
@@ -117,7 +135,7 @@ fun StandardTextField(
                             } else {
                                 Icons.Filled.Visibility
                             },
-                            tint = Color.White,
+                            tint = MaterialTheme.colorScheme.surface,
                             contentDescription = if (isPasswordVisible) {
                                 stringResource(id = R.string.password_visible_content_description)
                             } else {

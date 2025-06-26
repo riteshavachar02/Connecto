@@ -16,7 +16,10 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.connecto.R
@@ -31,29 +34,29 @@ fun StandardScaffold(
     bottomNavItem: List<BottomNavItem> = listOf(
         BottomNavItem(
             route = Screen.MainFeedScreen.route,
-            icon = Icons.Outlined.Home,
+            icon = ImageVector.vectorResource(id = R.drawable.ic_home),
             contentDescription = stringResource(id = R.string.home)
         ),
         BottomNavItem(
             route = Screen.ChatScreen.route,
-            icon = Icons.Outlined.Chat,
+            icon = ImageVector.vectorResource(id = R.drawable.ic_chat),
             contentDescription = stringResource(id = R.string.chat),
             alertCount = 10
         ),
         BottomNavItem(
             route = Screen.CreatePostScreen.route,
-            icon = Icons.Default.Add,
+            icon = ImageVector.vectorResource(id = R.drawable.ic_add),
             contentDescription = stringResource(id = R.string.make_post)
         ),
         BottomNavItem(
             route = Screen.ActivityScreen.route,
-            icon = Icons.Outlined.Notifications,
+            icon = ImageVector.vectorResource(id = R.drawable.ic_notification),
             contentDescription = stringResource(id = R.string.alert),
             alertCount = 100
         ),
         BottomNavItem(
             route = Screen.ProfileScreen.route,
-            icon = Icons.Outlined.PersonOutline,
+            icon = ImageVector.vectorResource(id = R.drawable.ic_profile),
             contentDescription = stringResource(id = R.string.profile)
         )
     ),

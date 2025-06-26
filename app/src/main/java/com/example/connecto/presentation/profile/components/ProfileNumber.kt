@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import com.example.connecto.presentation.ui.theme.spaceSmall
+import com.example.connecto.presentation.ui.theme.SpaceSmall
 
 @Composable
 fun ProfileNumber(
@@ -29,7 +29,7 @@ fun ProfileNumber(
             ),
             textAlign = TextAlign.Center
         )
-        Spacer(modifier = Modifier.height(spaceSmall))
+        Spacer(modifier = Modifier.height(SpaceSmall))
         Text(
             text = text,
             style = MaterialTheme.typography.bodyMedium.copy(

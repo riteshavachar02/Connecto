@@ -25,9 +25,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.connecto.R
 import com.example.connecto.domain.models.User
-import com.example.connecto.presentation.ui.theme.spaceLarge
-import com.example.connecto.presentation.ui.theme.spaceMedium
-import com.example.connecto.presentation.ui.theme.spaceSmall
+import com.example.connecto.presentation.ui.theme.SpaceLarge
+import com.example.connecto.presentation.ui.theme.SpaceMedium
+import com.example.connecto.presentation.ui.theme.SpaceSmall
 
 @Composable
 fun ProfileHeaderSection(
@@ -48,7 +48,7 @@ fun ProfileHeaderSection(
             modifier = Modifier
                 .offset(
                     x = if (isOwnProfile) {
-                        (30.dp + spaceSmall) / 2f
+                        (30.dp + SpaceSmall) / 2f
                     } else 0.dp
                 ),
             verticalAlignment = Alignment.CenterVertically
@@ -60,7 +60,7 @@ fun ProfileHeaderSection(
                 ),
                 color = MaterialTheme.colorScheme.onBackground
             )
-            Spacer(modifier = Modifier.width(spaceSmall))
+            Spacer(modifier = Modifier.width(SpaceSmall))
             if (isOwnProfile) {
                 IconButton(
                     onClick = onEditClick,
@@ -74,20 +74,20 @@ fun ProfileHeaderSection(
                 }
             }
         }
-        Spacer(modifier = Modifier.height(spaceMedium))
+        Spacer(modifier = Modifier.height(SpaceMedium))
         Text(
             text = user.description,
             modifier = Modifier
                 .padding(
-                    start = spaceMedium,
-                    end = spaceMedium
+                    start = SpaceMedium,
+                    end = SpaceMedium
                 ),
             style = MaterialTheme.typography.bodyMedium.copy(
                 fontSize = 14.sp
             ),
             textAlign = TextAlign.Center
         )
-        Spacer(modifier = Modifier.height(spaceLarge))
+        Spacer(modifier = Modifier.height(SpaceLarge))
         ProfileState(user = user, isOwnProfile = false)
     }
 }

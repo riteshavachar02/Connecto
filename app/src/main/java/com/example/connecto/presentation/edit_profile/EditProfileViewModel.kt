@@ -3,58 +3,48 @@ package com.example.connecto.presentation.edit_profile
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.connecto.presentation.util.states.StandardTextFieldState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class EditProfileViewModel @Inject constructor() :ViewModel() {
+class EditProfileViewModel @Inject constructor(
+    
+) : ViewModel() {
 
-    private val _usernameText = mutableStateOf("")
-    val usernameText: State<String> = _usernameText
+    private val _usernameState = mutableStateOf(StandardTextFieldState())
+    val usernameState: State<StandardTextFieldState> = _usernameState
 
-    private val _emailText = mutableStateOf("")
-    val emailText: State<String> = _emailText
+    private val _githubTextFieldState = mutableStateOf(StandardTextFieldState())
+    val githubTextFieldState: State<StandardTextFieldState> = _githubTextFieldState
 
-    private val _passwordText = mutableStateOf("")
-    val passwordText: State<String> = _passwordText
+    private val _linkedInTextFieldState = mutableStateOf(StandardTextFieldState())
+    val linkedInTextFieldState: State<StandardTextFieldState> = _linkedInTextFieldState
 
-    private val _showPassword = mutableStateOf(false)
-    val showPassword: State<Boolean> = _showPassword
+    private val _instagramTextFieldState = mutableStateOf (StandardTextFieldState())
+    val instagramTextFieldState: State<StandardTextFieldState> = _instagramTextFieldState
 
-    private val _usernameError = mutableStateOf<String>("")
-    val usernameError: State<String> = _usernameError
+    private val _bioTextFieldState = mutableStateOf(StandardTextFieldState())
+    val bioTextFieldState: State<StandardTextFieldState> = _bioTextFieldState
 
-    private val _emailError = mutableStateOf<String>("")
-    val emailError: State<String> = _emailError
-
-    private val _passwordError = mutableStateOf<String>("")
-    val passwordError: State<String> = _passwordError
-
-    fun setUsernameText(username: String) {
-        _usernameText.value = username
+    fun setBioTextFieldState(state: StandardTextFieldState) {
+        _bioTextFieldState.value = state
     }
 
-    fun setEmailText(email: String) {
-        _emailText.value = email
+    fun setInstagramTextFieldState(state: StandardTextFieldState)
+    {
+        _instagramTextFieldState.value = state
     }
 
-    fun setPasswordText(password: String) {
-        _passwordText.value = password
+    fun setLinkedInTextFieldState(state: StandardTextFieldState) {
+        _linkedInTextFieldState.value = state
     }
 
-    fun setShowPassword(showPassword: Boolean) {
-        _showPassword.value = showPassword
+    fun setGithubTextFieldState(state: StandardTextFieldState) {
+        _githubTextFieldState.value = state
     }
 
-    fun setIsUsernameError(error: String) {
-        _usernameError.value = error
-    }
-
-    fun setIsEmailError(error: String) {
-        _emailError.value = error
-    }
-
-    fun setIsPasswordError(error: String) {
-        _passwordError.value = error
+    fun setUsernameState(state: StandardTextFieldState) {
+        _usernameState.value = state
     }
 }

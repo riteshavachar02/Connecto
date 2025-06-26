@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.connecto.presentation.ui.theme.IconSizeMedium
 
 @Composable
 fun RowScope.StandardBottomNavItem(
@@ -89,7 +90,7 @@ fun RowScope.StandardBottomNavItem(
                         imageVector = icon,
                         contentDescription = contentDescription,
                         modifier = Modifier
-                            .size(30.dp)
+                            .size(IconSizeMedium)
                             .align(Alignment.Center),
                     )
                 }

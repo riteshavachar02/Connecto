@@ -21,7 +21,7 @@ import com.example.connecto.domain.models.Activity
 import com.example.connecto.domain.util.ActivityAction
 import com.example.connecto.domain.util.DateFormatUtil
 import com.example.connecto.presentation.components.StandardToolBar
-import com.example.connecto.presentation.ui.theme.spaceSmall
+import com.example.connecto.presentation.ui.theme.SpaceSmall
 import kotlin.random.Random
 
 @Composable
@@ -48,7 +48,7 @@ fun ActivityScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize(),
-            contentPadding = PaddingValues(top = spaceSmall)
+            contentPadding = PaddingValues(top = SpaceSmall)
         ) {
             items(20) {
                 ActivityItem(
@@ -64,7 +64,7 @@ fun ActivityScreen(
                     )
                 )
                 if (it<19) {
-                    Spacer(modifier = Modifier.height(spaceSmall))
+                    Spacer(modifier = Modifier.height(SpaceSmall))
                 }
             }
         }

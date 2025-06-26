@@ -15,8 +15,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.connecto.R
-import com.example.connecto.presentation.ui.theme.spaceMedium
-import com.example.connecto.presentation.ui.theme.spaceSmall
+import com.example.connecto.presentation.ui.theme.SpaceMedium
+import com.example.connecto.presentation.ui.theme.SpaceSmall
 import com.example.connecto.presentation.util.toPx
 
 @Composable
@@ -58,21 +58,21 @@ fun BannerSection(
                 modifier = leftIconModifier
                     .height(iconSize)
                     .align(Alignment.BottomStart)
-                    .padding(spaceSmall)
+                    .padding(SpaceSmall)
             ) {
-                Spacer(modifier = Modifier.width(spaceSmall))
+                Spacer(modifier = Modifier.width(SpaceSmall))
                 Image(
                     painter = painterResource(id = R.drawable.ic_js_logo),
                     contentDescription = "JavaScript Logo",
                     modifier = Modifier.height(iconSize)
                 )
-                Spacer(modifier = Modifier.width(spaceMedium))
+                Spacer(modifier = Modifier.width(SpaceMedium))
                 Image(
                     painter = painterResource(id = R.drawable.ic_csharp_logo),
                     contentDescription = "C# Logo",
                     modifier = Modifier.height(iconSize)
                 )
-                Spacer(modifier = Modifier.width(spaceMedium))
+                Spacer(modifier = Modifier.width(SpaceMedium))
                 Image(
                     painter = painterResource(id = R.drawable.ic_kotlin_logo),
                     contentDescription = "Kotlin Logo",
@@ -85,7 +85,7 @@ fun BannerSection(
                 modifier = rightIconModifier
                     .height(iconSize)
                     .align(Alignment.BottomEnd)
-                    .padding(spaceSmall)
+                    .padding(SpaceSmall)
             ) {
                 IconButton(
                     onClick = onGitHubClick,

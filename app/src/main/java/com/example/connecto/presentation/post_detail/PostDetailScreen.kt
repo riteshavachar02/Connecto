@@ -41,10 +41,10 @@ import com.example.connecto.domain.models.Comment
 import com.example.connecto.domain.models.Post
 import com.example.connecto.presentation.components.ActionBar
 import com.example.connecto.presentation.components.StandardToolBar
-import com.example.connecto.presentation.ui.theme.profilePictureSizeSmall
-import com.example.connecto.presentation.ui.theme.spaceLarge
-import com.example.connecto.presentation.ui.theme.spaceMedium
-import com.example.connecto.presentation.ui.theme.spaceSmall
+import com.example.connecto.presentation.ui.theme.ProfilePictureSizeSmall
+import com.example.connecto.presentation.ui.theme.SpaceLarge
+import com.example.connecto.presentation.ui.theme.SpaceMedium
+import com.example.connecto.presentation.ui.theme.SpaceSmall
 
 @Composable
 fun PostDetailScreen(
@@ -98,7 +98,7 @@ fun PostDetailScreen(
                             Column(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(spaceLarge)
+                                    .padding(SpaceLarge)
                             ) {
                                 ActionBar(
                                     userName = "Cristiano Ronaldo",
@@ -116,12 +116,12 @@ fun PostDetailScreen(
 
                                     }
                                 )
-                                Spacer(modifier = Modifier.height(spaceSmall))
+                                Spacer(modifier = Modifier.height(SpaceSmall))
                                 Text(
                                     text = post.description,
                                     style = MaterialTheme.typography.bodyMedium,
                                 )
-                                Spacer(modifier = Modifier.height(spaceMedium))
+                                Spacer(modifier = Modifier.height(SpaceMedium))
                                 Text(
                                     text = stringResource(
                                         R.string.liked_by_x_people,
@@ -140,8 +140,8 @@ fun PostDetailScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(
-                            horizontal = spaceMedium,
-                            vertical = spaceSmall
+                            horizontal = SpaceMedium,
+                            vertical = SpaceSmall
                         ),
                     comment = Comment(
                         userName = "Cristiano Ronaldo$it",
@@ -173,7 +173,7 @@ fun Comment(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(spaceMedium)
+                .padding(SpaceMedium)
         ) {
             Row(
                 modifier = Modifier
@@ -189,9 +189,9 @@ fun Comment(
                         contentDescription = "Profile picture",
                         modifier = Modifier
                             .clip(CircleShape)
-                            .size(profilePictureSizeSmall)
+                            .size(ProfilePictureSizeSmall)
                     )
-                    Spacer(modifier = Modifier.width(spaceSmall))
+                    Spacer(modifier = Modifier.width(SpaceSmall))
                     Text(
                         text = comment.userName,
                         fontWeight = FontWeight.Bold,
@@ -205,7 +205,7 @@ fun Comment(
                     textAlign = TextAlign.Center
                 )
             }
-            Spacer(modifier = Modifier.height(spaceMedium))
+            Spacer(modifier = Modifier.height(SpaceMedium))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -216,7 +216,7 @@ fun Comment(
                     color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier.weight(9f)
                 )
-                Spacer(modifier = Modifier.width(spaceSmall))
+                Spacer(modifier = Modifier.width(SpaceSmall))
                 IconButton(
                     onClick = {
                         onLikedClicked(comment.isLiked)
@@ -230,7 +230,7 @@ fun Comment(
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(spaceMedium))
+            Spacer(modifier = Modifier.height(SpaceMedium))
             Text(
                 text = stringResource(id = R.string.liked_by_x_people, comment.likeCount),
                 fontWeight = FontWeight.Bold,

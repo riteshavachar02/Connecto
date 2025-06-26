@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import com.example.connecto.R
 import com.example.connecto.domain.models.User
-import com.example.connecto.presentation.ui.theme.spaceLarge
+import com.example.connecto.presentation.ui.theme.SpaceLarge
 
 @Composable
 fun ProfileState(
@@ -34,18 +34,18 @@ fun ProfileState(
             number = user.followersCount,
             text = stringResource(id = R.string.followers)
         )
-        Spacer(modifier = Modifier.width(spaceLarge))
+        Spacer(modifier = Modifier.width(SpaceLarge))
         ProfileNumber(
             number = user.followingCount,
             text = stringResource(id = R.string.following)
         )
-        Spacer(modifier = Modifier.width(spaceLarge))
+        Spacer(modifier = Modifier.width(SpaceLarge))
         ProfileNumber(
             number = user.postCount,
             text = stringResource(id = R.string.posts)
         )
         if (isOwnProfile) {
-            Spacer(modifier = Modifier.width(spaceLarge))
+            Spacer(modifier = Modifier.width(SpaceLarge))
             Button(
                 onClick = onFollowClick,
                 colors = ButtonDefaults.buttonColors(

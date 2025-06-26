@@ -28,8 +28,8 @@ import com.example.connecto.domain.models.User
 import com.example.connecto.presentation.components.Post
 import com.example.connecto.presentation.profile.components.BannerSection
 import com.example.connecto.presentation.profile.components.ProfileHeaderSection
-import com.example.connecto.presentation.ui.theme.profilePictureSizeLarge
-import com.example.connecto.presentation.ui.theme.spaceSmall
+import com.example.connecto.presentation.ui.theme.ProfilePictureSizeLarge
+import com.example.connecto.presentation.ui.theme.SpaceSmall
 import com.example.connecto.presentation.util.Screen
 import com.example.connecto.presentation.util.toPx
 
@@ -46,16 +46,16 @@ fun ProfileScreen(
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     val bannerHeight = (screenWidth / 2.5f)
     val toolbarHeightCollapsed = 75.dp
-    val toolbarHeightExpanded = bannerHeight + profilePictureSizeLarge
+    val toolbarHeightExpanded = bannerHeight + ProfilePictureSizeLarge
     val maxOffset = toolbarHeightExpanded - toolbarHeightCollapsed
 
     val iconSizeExpanded = 35.dp
-    val imageCollapsedOffsetY = remember { (toolbarHeightCollapsed - profilePictureSizeLarge / 2f) / 2f }
+    val imageCollapsedOffsetY = remember { (toolbarHeightCollapsed - ProfilePictureSizeLarge / 2f) / 2f }
     val iconCollapsedOffsetY = (toolbarHeightCollapsed - iconSizeExpanded) / 2f
 
     val iconCenterOffset = (screenWidth.toPx() / 4f -
-            profilePictureSizeLarge.toPx() / 4f -
-            spaceSmall.toPx()) / 2f
+            ProfilePictureSizeLarge.toPx() / 4f -
+            SpaceSmall.toPx()) / 2f
 
     // === Scroll Behavior ===
     val nestedScrollConnection = remember {
@@ -85,7 +85,7 @@ fun ProfileScreen(
             state = lazyListState
         ) {
             item {
-                Spacer(modifier = Modifier.height(toolbarHeightExpanded - profilePictureSizeLarge / 2f))
+                Spacer(modifier = Modifier.height(toolbarHeightExpanded - ProfilePictureSizeLarge / 2f))
             }
 
             item {
@@ -108,8 +108,8 @@ fun ProfileScreen(
 
             items(20) {
                 Spacer(modifier = Modifier
-                    .height(spaceSmall)
-                    .offset(y = -profilePictureSizeLarge / 2f)
+                    .height(SpaceSmall)
+                    .offset(y = -ProfilePictureSizeLarge / 2f)
                 )
 
                 Post(
@@ -126,7 +126,7 @@ fun ProfileScreen(
                     onPostClick = {
                         navController.navigate(Screen.PostDetailScreen.route)
                     },
-                    modifier = Modifier.offset(y = -profilePictureSizeLarge / 2f)
+                    modifier = Modifier.offset(y = -ProfilePictureSizeLarge / 2f)
                 )
             }
         }
@@ -157,14 +157,14 @@ fun ProfileScreen(
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .graphicsLayer {
-                        translationY = -profilePictureSizeLarge.toPx() / 2f -
+                        translationY = -ProfilePictureSizeLarge.toPx() / 2f -
                                 (1f - expandedRatio) * imageCollapsedOffsetY.toPx()
                         transformOrigin = TransformOrigin(0.5f, 0f)
                         val scale = 0.5f + expandedRatio * 0.5f
                         scaleX = scale
                         scaleY = scale
                     }
-                    .size(profilePictureSizeLarge)
+                    .size(ProfilePictureSizeLarge)
                     .clip(CircleShape)
                     .border(1.dp, MaterialTheme.colorScheme.onSurface, CircleShape)
             )

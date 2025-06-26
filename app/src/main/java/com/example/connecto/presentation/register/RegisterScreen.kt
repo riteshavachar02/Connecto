@@ -9,6 +9,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.PersonOutline
+import androidx.compose.material.icons.outlined.Security
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -22,12 +26,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.connecto.R
 import com.example.connecto.presentation.components.StandardTextField
-import com.example.connecto.presentation.ui.theme.spaceLarge
-import com.example.connecto.presentation.ui.theme.spaceMedium
+import com.example.connecto.presentation.ui.theme.SpaceLarge
+import com.example.connecto.presentation.ui.theme.SpaceMedium
 import com.example.connecto.presentation.util.Screen
 
 @Composable
@@ -39,9 +44,9 @@ fun RegisterScreen (
         modifier = Modifier
             .fillMaxSize()
             .padding(
-                start = spaceLarge,
-                end = spaceLarge,
-                top = spaceLarge,
+                start = SpaceLarge,
+                end = SpaceLarge,
+                top = SpaceLarge,
                 bottom = 50.dp
             )
     ) {
@@ -54,28 +59,31 @@ fun RegisterScreen (
             Text(
                 text = stringResource(R.string.register),
                 color = MaterialTheme.colorScheme.onBackground,
-                style = MaterialTheme.typography.headlineLarge
+                style = MaterialTheme.typography.headlineLarge,
+                textAlign = TextAlign.Center
             )
-            Spacer(modifier = Modifier.height(spaceMedium))
+            Spacer(modifier = Modifier.height(SpaceMedium))
             StandardTextField (
                 text = viewModel.emailText.value,
                 onValueChange = {
                     viewModel.setEmailText(it)
                 },
                 error = viewModel.emailError.value,
+                leadingIcon = Icons.Outlined.Email,
                 keyboardType = KeyboardType.Email,
                 hint = stringResource(R.string.email_hint)
             )
-            Spacer(modifier = Modifier.height(spaceMedium))
+            Spacer(modifier = Modifier.height(SpaceMedium))
             StandardTextField (
                 text = viewModel.usernameText.value,
                 onValueChange = {
                     viewModel.setUsernameText(it)
                 },
                 error = viewModel.usernameError.value,
+                leadingIcon = Icons.Outlined.PersonOutline,
                 hint = stringResource(R.string.username_hint)
             )
-            Spacer(modifier = Modifier.height(spaceMedium))
+            Spacer(modifier = Modifier.height(SpaceMedium))
             StandardTextField (
                 text = viewModel.passwordText.value,
                 onValueChange = {
@@ -83,21 +91,26 @@ fun RegisterScreen (
                 },
                 error = viewModel.passwordError.value,
                 hint = stringResource(R.string.password_hint),
+                leadingIcon = Icons.Outlined.Security,
                 keyboardType = KeyboardType.Password,
                 isPasswordVisible = viewModel.showPassword.value,
                 onPasswordToggleClick = {
                     viewModel.setShowPassword(it)
                 }
             )
-            Spacer(modifier = Modifier.height(spaceMedium))
+            Spacer(modifier = Modifier.height(SpaceMedium))
             Button(
-                onClick = { },
+                onClick = {
+                    navController.navigate(Screen.LoginScreen.route)
+                },
                 modifier = Modifier
-                    .align(Alignment.End)
+                    .fillMaxWidth()
+                    .padding(SpaceLarge)
             ) {
                 Text(
                     text = stringResource(id = R.string.register),
-                    color = MaterialTheme.colorScheme.onPrimary
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    fontSize = 15.sp
                 )
             }
         }

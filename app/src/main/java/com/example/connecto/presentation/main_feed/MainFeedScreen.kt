@@ -22,7 +22,7 @@ import androidx.navigation.NavController
 import com.example.connecto.R
 import com.example.connecto.presentation.components.Post
 import com.example.connecto.presentation.components.StandardToolBar
-import com.example.connecto.presentation.ui.theme.spaceLarge
+import com.example.connecto.presentation.ui.theme.SpaceLarge
 import com.example.connecto.presentation.util.Screen
 
 @Composable
@@ -60,7 +60,7 @@ fun MainFeedScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(bottom = spaceLarge)
+                .padding(bottom = SpaceLarge)
         ) {
             items(20) {
                 Post(

@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.example.connecto.R
 import com.example.connecto.domain.models.Activity
 import com.example.connecto.domain.util.ActivityAction
-import com.example.connecto.presentation.ui.theme.spaceSmall
+import com.example.connecto.presentation.ui.theme.SpaceSmall
 
 @Composable
 fun ActivityItem(
@@ -41,7 +41,7 @@ fun ActivityItem(
             modifier = Modifier
                 .fillMaxSize()
                 .height(50.dp)
-                .padding(spaceSmall),
+                .padding(SpaceSmall),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

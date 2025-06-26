@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -32,10 +31,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -47,11 +48,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.connecto.R
 import com.example.connecto.domain.models.Post
-import com.example.connecto.presentation.ui.theme.profilePictureSizeMedium
-import com.example.connecto.presentation.ui.theme.profilePictureSizeSmall
-import com.example.connecto.presentation.ui.theme.spaceExtraSmall
-import com.example.connecto.presentation.ui.theme.spaceMedium
-import com.example.connecto.presentation.ui.theme.spaceSmall
+import com.example.connecto.presentation.ui.theme.IconSizeMedium
+import com.example.connecto.presentation.ui.theme.ProfilePictureSizeSmall
+import com.example.connecto.presentation.ui.theme.SpaceExtraSmall
+import com.example.connecto.presentation.ui.theme.SpaceMedium
+import com.example.connecto.presentation.ui.theme.SpaceSmall
 import com.example.connecto.utils.Constants
 
 
@@ -66,9 +67,9 @@ fun Post(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                start = spaceSmall,
-                end = spaceSmall,
-                top = spaceExtraSmall
+                start = SpaceSmall,
+                end = SpaceSmall,
+                top = SpaceExtraSmall
             )
     ) {
         Column(
@@ -88,7 +89,7 @@ fun Post(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(spaceSmall)
+                    .padding(SpaceSmall)
             ) {
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -101,11 +102,11 @@ fun Post(
                             contentDescription = "Profile picture",
                             contentScale = ContentScale.Crop,
                             modifier = Modifier
-                                .size(profilePictureSizeSmall)
+                                .size(ProfilePictureSizeSmall)
                                 .clip(CircleShape)
                         )
                     }
-                    Spacer(modifier = Modifier.width(spaceSmall))
+                    Spacer(modifier = Modifier.width(SpaceSmall))
                     ActionBar(
                         userName = "Cristiano Ronaldo",
                         modifier = Modifier.fillMaxWidth(),
@@ -124,7 +125,7 @@ fun Post(
                         }
                     )
                 }
-                Spacer(modifier = Modifier.height(spaceSmall))
+                Spacer(modifier = Modifier.height(SpaceSmall))
                 Text(
                     text = buildAnnotatedString {
                         append(post.description)
@@ -142,7 +143,7 @@ fun Post(
                     maxLines = Constants.MAX_POST_DESCRIPTION_LINES,
                     style = MaterialTheme.typography.bodyMedium,
                 )
-                Spacer(modifier = Modifier.height(spaceMedium))
+                Spacer(modifier = Modifier.height(SpaceMedium))
                 Row(
                     modifier = Modifier
                         .fillMaxWidth(),
@@ -175,7 +176,7 @@ fun Post(
 @Composable
 fun EngagementButtons(
     modifier: Modifier = Modifier,
-    iconSize: Dp = 30.dp,
+    iconSize: Dp = IconSizeMedium,
     isLiked: Boolean = false,
     onLikeClick: (Boolean) -> Unit = {},
     onCommentClick: () -> Unit = {},
@@ -190,10 +191,10 @@ fun EngagementButtons(
             onClick = {
                 onLikeClick(!isLiked)
             },
-            modifier = Modifier.size(iconSize)
-            ) {
+            modifier = Modifier.size(30.dp)
+        ) {
             Icon(
-                imageVector = Icons.Filled.Favorite,
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_favorite),
                 tint = if (isLiked) {
                     Color.Red
                 } else {
@@ -203,31 +204,34 @@ fun EngagementButtons(
                     stringResource(id = R.string.unlike)
                 } else {
                     stringResource(id = R.string.like)
-                }
+                },
+                modifier = Modifier.size(iconSize)
             )
         }
-        Spacer(modifier = Modifier.width(spaceSmall))
+        Spacer(modifier = Modifier.width(SpaceSmall))
         IconButton(
             onClick = {
                 onCommentClick()
             },
-            modifier = Modifier.size(iconSize)
+            modifier = Modifier.size(30.dp)
         ) {
             Icon(
-                imageVector = Icons.AutoMirrored.Filled.Comment,
-                contentDescription = stringResource(id = R.string.comment)
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_chat),
+                contentDescription = stringResource(id = R.string.comment),
+                modifier = Modifier.size(iconSize)
             )
         }
-        Spacer(modifier = Modifier.width(spaceSmall))
+        Spacer(modifier = Modifier.width(SpaceSmall))
         IconButton(
             onClick = {
                 onShareClick()
             },
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(30.dp)
         ) {
             Icon(
-                imageVector = Icons.Filled.Share,
-                contentDescription = stringResource(id = R.string.share)
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_share),
+                contentDescription = stringResource(id = R.string.share),
+                modifier = Modifier.size(iconSize)
             )
         }
     }
