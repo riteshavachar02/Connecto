@@ -105,7 +105,7 @@ fun RegisterScreen (
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(SpaceLarge)
+                    .padding(SpaceMedium)
             ) {
                 Text(
                     text = stringResource(id = R.string.register),

@@ -161,7 +161,8 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(SpaceMedium))
                 StandardTextField(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .height(100.dp),
                     text = viewModel.bioTextFieldState.value.text,
                     error = viewModel.bioTextFieldState.value.error,
                     hint = stringResource(id = R.string.your_bio),
