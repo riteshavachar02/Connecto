@@ -45,4 +45,5 @@
     <string name="linkedIn_profile_url">LinkedIn Profile URL</string>
     <string name="instagram_profile_url">Instagram Profile URL</string>
     <string name="your_bio">Your Bio</string>
+    <string name="select_top_skills">Select top 3 skills</string>
 </resources>

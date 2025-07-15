@@ -104,12 +104,12 @@ fun RowScope.StandardBottomNavItem(
                         text = alertText,
                         color = MaterialTheme.colorScheme.onPrimary,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 8.sp,
+                        fontSize = 11.sp,
                         textAlign = TextAlign.Center,
                         modifier = Modifier
                             .align(Alignment.TopCenter)
-                            .offset(15.dp)
-                            .size(20.dp)
+                            .offset(14.dp)
+                            .size(22.dp)
                             .clip(CircleShape)
                             .background(color = MaterialTheme.colorScheme.primary)
                     )

@@ -3,8 +3,11 @@ package com.example.connecto.presentation.edit_profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,7 +19,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,6 +26,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
@@ -33,6 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -40,12 +44,16 @@ import androidx.navigation.NavController
 import com.example.connecto.R
 import com.example.connecto.presentation.components.StandardTextField
 import com.example.connecto.presentation.components.StandardToolBar
+import com.example.connecto.presentation.edit_profile.components.Chip
 import com.example.connecto.presentation.ui.theme.ProfilePictureSizeLarge
 import com.example.connecto.presentation.ui.theme.SpaceLarge
 import com.example.connecto.presentation.ui.theme.SpaceMedium
 import com.example.connecto.presentation.util.Screen
 import com.example.connecto.presentation.util.states.StandardTextFieldState
+import kotlin.random.Random
 
+
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun EditProfileScreen(
     navController: NavController,
@@ -161,14 +169,14 @@ fun EditProfileScreen(
                 Spacer(modifier = Modifier.height(SpaceMedium))
                 StandardTextField(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp),
+                        .fillMaxWidth(),
                     text = viewModel.bioTextFieldState.value.text,
                     error = viewModel.bioTextFieldState.value.error,
                     hint = stringResource(id = R.string.your_bio),
                     singleLine = false,
                     maxLines = 3,
-                    leadingIcon = Icons.Default.Description,
+                    maxLength = 100,
+                    leadingIcon = ImageVector.vectorResource(id = R.drawable.ic_description),
                     onValueChange = {
                         viewModel.setBioTextFieldState(
                             StandardTextFieldState(
@@ -177,6 +185,35 @@ fun EditProfileScreen(
                         )
                     },
                 )
+                Spacer(modifier = Modifier.height(SpaceMedium))
+                Text(
+                    text = stringResource(id = R.string.select_top_skills),
+                    style = MaterialTheme.typography.headlineMedium,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.align(CenterHorizontally)
+                )
+                Spacer(modifier = Modifier.height(SpaceMedium))
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(SpaceMedium, Alignment.CenterHorizontally),
+                    verticalArrangement = Arrangement.spacedBy(SpaceMedium, Alignment.CenterVertically)
+                ) {
+                    listOf(
+                        "Kotlin",
+                        "Java",
+                        "JavaScript",
+                        "C++",
+                        "C",
+                        "Dart",
+                        "Assembly",
+                        "HTML"
+                    ).forEach{
+                        Chip(
+                            text = it,
+                            selected = Random.nextInt(2) == 0
+                        ) { }
+                    }
+                }
             }
         }
     }

@@ -65,7 +65,6 @@ fun StandardTextField(
                 }
             },
             maxLines = maxLines,
-//            textStyle = style,
             colors = TextFieldDefaults.colors(
                 focusedTextColor = MaterialTheme.colorScheme.background,
                 unfocusedTextColor = MaterialTheme.colorScheme.background,
@@ -124,7 +123,6 @@ fun StandardTextField(
                     }
                 }
             } else null,
-
             trailingIcon = if(isPasswordToggleDisplayed) {
                 val icon: @Composable () -> Unit = {
                     IconButton(
