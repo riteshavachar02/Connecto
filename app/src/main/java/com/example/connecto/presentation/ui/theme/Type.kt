@@ -1,5 +1,6 @@
 package com.example.connecto.presentation.ui.theme
 
+import TextWhite
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -21,9 +22,16 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = quickSand,
         fontWeight = FontWeight.Normal,
+        color = TextWhite,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp
+    ),
+    bodyMedium = TextStyle(
+        fontFamily = quickSand,
+        fontWeight = FontWeight.Normal,
+        color = TextWhite,
+        fontSize = 12.sp
     ),
     headlineLarge = TextStyle(
         fontFamily = quickSand,
@@ -34,11 +42,5 @@ val Typography = Typography(
         fontFamily = quickSand,
         fontWeight = FontWeight.Medium,
         fontSize = 24.sp
-    ),
-    bodyMedium = TextStyle(
-        fontFamily = quickSand,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
     )
-
 )

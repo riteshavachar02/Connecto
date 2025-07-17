@@ -41,7 +41,7 @@ import com.example.connecto.domain.models.Comment
 import com.example.connecto.domain.models.Post
 import com.example.connecto.presentation.components.ActionBar
 import com.example.connecto.presentation.components.StandardToolBar
-import com.example.connecto.presentation.ui.theme.ProfilePictureSizeSmall
+import com.example.connecto.presentation.ui.theme.ProfilePictureExtraSizeSmall
 import com.example.connecto.presentation.ui.theme.SpaceLarge
 import com.example.connecto.presentation.ui.theme.SpaceMedium
 import com.example.connecto.presentation.ui.theme.SpaceSmall
@@ -189,7 +189,7 @@ fun Comment(
                         contentDescription = "Profile picture",
                         modifier = Modifier
                             .clip(CircleShape)
-                            .size(ProfilePictureSizeSmall)
+                            .size(ProfilePictureExtraSizeSmall)
                     )
                     Spacer(modifier = Modifier.width(SpaceSmall))
                     Text(

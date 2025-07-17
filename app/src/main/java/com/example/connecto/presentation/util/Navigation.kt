@@ -21,7 +21,7 @@ import com.example.connecto.presentation.splash.SplashScreen
 fun Navigation(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.EditProfileScreen.route
+        startDestination = Screen.SplashScreen.route
     ) {
         // Splash & Auth
         composable(Screen.SplashScreen.route) {
