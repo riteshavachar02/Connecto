@@ -13,6 +13,7 @@ import com.example.connecto.presentation.login.LoginScreen
 import com.example.connecto.presentation.main_feed.MainFeedScreen
 import com.example.connecto.presentation.post_detail.PostDetailScreen
 import com.example.connecto.presentation.profile.ProfileScreen
+import com.example.connecto.presentation.main_feed.PersonListScreen
 import com.example.connecto.presentation.register.RegisterScreen
 import com.example.connecto.presentation.search.SearchScreen
 import com.example.connecto.presentation.splash.SplashScreen
@@ -57,6 +58,9 @@ fun Navigation(navController: NavHostController) {
         }
         composable(Screen.SearchScreen.route) {
             SearchScreen(navController)
+        }
+        composable(Screen.PersonListScreen.route) {
+            PersonListScreen(navController)
         }
 
         // Static Post Detail Screen (for now)

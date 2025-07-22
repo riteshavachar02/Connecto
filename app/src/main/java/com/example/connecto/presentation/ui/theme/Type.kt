@@ -22,7 +22,6 @@ val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = quickSand,
         fontWeight = FontWeight.Normal,
-        color = TextWhite,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp

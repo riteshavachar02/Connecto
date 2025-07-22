@@ -61,7 +61,8 @@ fun UserProfileItem(
                 Text(
                     text = user.userName,
                     style = MaterialTheme.typography.bodyLarge.copy(
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                 )
                 Spacer(modifier = Modifier.height(SpaceSmall))
